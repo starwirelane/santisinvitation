@@ -29,9 +29,9 @@ const Index = () => {
         </div>
 
         {/* Content */}
-        <div className="relative z-10">
+        <div className="relative z-10 flex flex-col items-center">
           <motion.p
-            className="text-primary-foreground/60 text-xs font-heading tracking-[0.3em] uppercase mb-6"
+            className="text-primary-foreground/50 text-xs font-heading tracking-[0.3em] uppercase mb-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.8 }}
@@ -40,29 +40,46 @@ const Index = () => {
           </motion.p>
 
           <motion.h1
-            className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold leading-tight max-w-md text-primary-foreground"
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.7 }}
+            className="font-heading text-5xl sm:text-6xl md:text-7xl font-extrabold leading-none text-primary-foreground"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
           >
-            Hey, has sido invitado a la graduación de Santiago 🎓⚽
+            ¡HAS SIDO
+          </motion.h1>
+          <motion.h1
+            className="font-heading text-6xl sm:text-7xl md:text-8xl font-extrabold leading-none text-secondary mt-1"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+          >
+            INVITADO!
           </motion.h1>
 
           <motion.p
-            className="mt-4 text-primary-foreground/50 text-sm"
+            className="mt-6 text-primary-foreground/70 text-base sm:text-lg font-heading font-light max-w-xs text-center"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.6 }}
+          >
+            a la graduación de Santiago 🎓⚽
+          </motion.p>
+
+          <motion.p
+            className="mt-2 text-primary-foreground/40 text-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.7, duration: 0.6 }}
+            transition={{ delay: 1, duration: 0.6 }}
           >
             Sábado, 13 de junio · 3:30 PM
           </motion.p>
 
           <motion.button
             onClick={scrollToContent}
-            className="mt-8 px-10 py-3.5 rounded-full bg-secondary text-secondary-foreground font-heading font-semibold text-sm shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
-            initial={{ opacity: 0, y: 15 }}
+            className="mt-10 px-12 py-4 rounded-full bg-secondary text-secondary-foreground font-heading font-bold text-base shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9, duration: 0.6 }}
+            transition={{ delay: 1.2, duration: 0.6 }}
             whileTap={{ scale: 0.97 }}
           >
             Abrir invitación
