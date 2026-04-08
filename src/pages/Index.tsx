@@ -151,7 +151,7 @@ const Index = () => {
 
           <motion.button
             onClick={scrollToContent}
-            className="mt-10 px-12 py-4 rounded-full bg-secondary text-secondary-foreground font-heading font-bold text-base shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+            className="mt-10 px-12 py-4 rounded-full bg-primary text-primary-foreground font-heading font-bold text-base shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2, duration: 0.6 }}
@@ -174,7 +174,7 @@ const Index = () => {
       </section>
 
       {/* ===== MAIN CONTENT ===== */}
-      <section id="main" className="px-6 py-16 bg-primary">
+      <section id="main" className="px-6 py-16">
         <motion.div
           className="max-w-md w-full mx-auto space-y-8"
           initial="hidden"
