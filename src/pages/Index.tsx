@@ -137,7 +137,7 @@ const Index = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.6 }}
           >
-            a la graduación de Santiago 🎓⚽
+            A la Graduación de Santiago 🎓⚽
           </motion.p>
 
           <motion.p
@@ -146,7 +146,7 @@ const Index = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 1, duration: 0.6 }}
           >
-            Sábado, 13 de junio · 3:30 PM
+            Sábado, 13 de Junio · 3:30 PM
           </motion.p>
 
           <motion.button
