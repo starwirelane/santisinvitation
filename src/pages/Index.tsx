@@ -132,7 +132,7 @@ const Index = () => {
           </motion.h1>
 
           <motion.p
-            className="mt-6 text-primary-foreground/70 text-base sm:text-lg font-heading font-light max-w-xs text-center"
+            className="mt-6 text-primary-foreground/70 text-lg sm:text-xl font-heading font-light max-w-xs text-center"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.6 }}
@@ -141,7 +141,7 @@ const Index = () => {
           </motion.p>
 
           <motion.p
-            className="mt-2 text-primary-foreground/40 text-sm"
+            className="mt-2 text-primary-foreground/40 text-base"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1, duration: 0.6 }}
