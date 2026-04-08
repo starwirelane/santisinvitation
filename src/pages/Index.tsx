@@ -168,21 +168,8 @@ const Index = () => {
             </ul>
           </motion.div>
 
-          {/* RSVP */}
-          <motion.div className="bg-primary rounded-2xl p-7 shadow-md text-center space-y-4" variants={fadeUp} custom={3}>
-            <h3 className="font-heading text-base font-semibold text-primary-foreground flex items-center justify-center gap-2">
-              <span className="text-lg">📋</span> Confirmación
-            </h3>
-            <p className="text-primary-foreground/70 text-sm">
-              Por favor confirma antes del <span className="font-semibold text-primary-foreground">7 de junio de 2026</span>
-            </p>
-            <a
-              href="tel:209-663-3948"
-              className="inline-block px-8 py-3.5 rounded-full bg-secondary text-secondary-foreground font-heading font-semibold text-sm shadow-lg hover:scale-105 transition-transform duration-300"
-            >
-              📞 209-663-3948
-            </a>
-          </motion.div>
+          {/* RSVP with Countdown */}
+          <RsvpCountdown />
 
           {/* Footer note */}
           <motion.div className="text-center pb-8 space-y-2" variants={fadeUp} custom={4}>
