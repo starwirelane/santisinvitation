@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 import santiagoImg from "@/assets/santiago-soccer.png";
 import heroBg from "@/assets/soccer-hero-bg.jpg";
 import fieldTexture from "@/assets/field-texture.jpg";
@@ -10,6 +11,80 @@ const fadeUp = {
     y: 0,
     transition: { delay: i * 0.12, duration: 0.6, ease: "easeOut" as const },
   }),
+};
+
+const RSVP_DEADLINE = new Date("2026-06-07T23:59:59");
+
+const RsvpCountdown = () => {
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [expired, setExpired] = useState(false);
+
+  useEffect(() => {
+    const update = () => {
+      const now = new Date();
+      const diff = RSVP_DEADLINE.getTime() - now.getTime();
+      if (diff <= 0) {
+        setExpired(true);
+        return;
+      }
+      setTimeLeft({
+        days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((diff / (1000 * 60)) % 60),
+        seconds: Math.floor((diff / 1000) % 60),
+      });
+    };
+    update();
+    const id = setInterval(update, 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <motion.div
+      className="bg-primary rounded-2xl p-7 shadow-md text-center space-y-5"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: 0.4, duration: 0.6 }}
+    >
+      <h3 className="font-heading text-base font-semibold text-primary-foreground flex items-center justify-center gap-2">
+        <span className="text-lg">📋</span> Confirmación
+      </h3>
+
+      {!expired ? (
+        <>
+          <p className="text-primary-foreground/60 text-xs uppercase tracking-widest font-heading">Tiempo para confirmar</p>
+          <div className="flex justify-center gap-3">
+            {[
+              [timeLeft.days, "Días"],
+              [timeLeft.hours, "Hrs"],
+              [timeLeft.minutes, "Min"],
+              [timeLeft.seconds, "Seg"],
+            ].map(([val, label]) => (
+              <div key={String(label)} className="bg-primary-foreground/10 rounded-xl px-3 py-2 min-w-[56px]">
+                <p className="font-heading text-2xl font-bold text-primary-foreground">{String(val).padStart(2, "0")}</p>
+                <p className="text-primary-foreground/50 text-[10px] uppercase tracking-wider">{label}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-primary-foreground/50 text-xs">
+            Confirma antes del 7 de junio de 2026
+          </p>
+        </>
+      ) : (
+        <p className="text-primary-foreground/70 text-sm">
+          La fecha límite para confirmar ha pasado
+        </p>
+      )}
+
+      <a
+        href="tel:209-663-3948"
+        className="inline-block px-8 py-3.5 rounded-full bg-secondary text-secondary-foreground font-heading font-semibold text-sm shadow-lg hover:scale-105 transition-transform duration-300"
+      >
+        📞 209-663-3948
+      </a>
+    </motion.div>
+  );
 };
 
 const Index = () => {
@@ -167,21 +242,8 @@ const Index = () => {
             </ul>
           </motion.div>
 
-          {/* RSVP */}
-          <motion.div className="bg-primary rounded-2xl p-7 shadow-md text-center space-y-4" variants={fadeUp} custom={3}>
-            <h3 className="font-heading text-base font-semibold text-primary-foreground flex items-center justify-center gap-2">
-              <span className="text-lg">📋</span> Confirmación
-            </h3>
-            <p className="text-primary-foreground/70 text-sm">
-              Por favor confirma antes del <span className="font-semibold text-primary-foreground">7 de junio de 2026</span>
-            </p>
-            <a
-              href="tel:209-663-3948"
-              className="inline-block px-8 py-3.5 rounded-full bg-secondary text-secondary-foreground font-heading font-semibold text-sm shadow-lg hover:scale-105 transition-transform duration-300"
-            >
-              📞 209-663-3948
-            </a>
-          </motion.div>
+          {/* RSVP with Countdown */}
+          <RsvpCountdown />
 
           {/* Footer note */}
           <motion.div className="text-center pb-8 space-y-2" variants={fadeUp} custom={4}>
