@@ -87,7 +87,7 @@ const RsvpCountdown = () => {
   );
 };
 
-
+const Index = () => {
   const scrollToContent = () => {
     document.getElementById("main")?.scrollIntoView({ behavior: "smooth" });
   };
