@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,44 +6,41 @@
 
 @layer base {
   :root {
-    --background: 120 40% 10%;
-    --foreground: 60 30% 96%;
+    --background: 40 30% 97%;
+    --foreground: 220 20% 18%;
 
-    --card: 120 30% 14%;
-    --card-foreground: 60 30% 96%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 18%;
 
-    --popover: 120 30% 14%;
-    --popover-foreground: 60 30% 96%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 18%;
 
-    --primary: 120 70% 45%;
-    --primary-foreground: 120 40% 6%;
+    --primary: 220 45% 40%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 45 90% 55%;
-    --secondary-foreground: 45 90% 10%;
+    --secondary: 35 70% 52%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 120 20% 18%;
-    --muted-foreground: 120 15% 60%;
+    --muted: 40 20% 92%;
+    --muted-foreground: 220 10% 45%;
 
-    --accent: 45 90% 55%;
-    --accent-foreground: 45 90% 10%;
+    --accent: 35 70% 52%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 120 25% 22%;
-    --input: 120 25% 22%;
-    --ring: 120 70% 45%;
+    --border: 40 15% 88%;
+    --input: 40 15% 88%;
+    --ring: 220 45% 40%;
 
     --radius: 1rem;
 
     --font-heading: 'Outfit', sans-serif;
     --font-body: 'Inter', sans-serif;
 
-    --gold: 45 90% 55%;
-    --gold-foreground: 45 90% 10%;
-    --field: 120 50% 30%;
-    --field-light: 120 45% 38%;
-    --field-dark: 120 50% 15%;
+    --warm: 35 50% 95%;
+    --warm-foreground: 35 40% 30%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
