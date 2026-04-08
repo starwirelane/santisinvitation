@@ -123,7 +123,7 @@ const Index = () => {
             ¡HAS SIDO
           </motion.h1>
           <motion.h1
-            className="font-heading text-6xl sm:text-7xl md:text-8xl font-extrabold leading-none text-secondary mt-1"
+            className="font-heading text-6xl sm:text-7xl md:text-8xl font-extrabold leading-none text-primary mt-1"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.5, duration: 0.8 }}
