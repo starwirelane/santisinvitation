@@ -174,7 +174,7 @@ const Index = () => {
       </section>
 
       {/* ===== MAIN CONTENT ===== */}
-      <section id="main" className="px-6 py-16">
+      <section id="main" className="px-6 py-16 bg-primary">
         <motion.div
           className="max-w-md w-full mx-auto space-y-8"
           initial="hidden"
