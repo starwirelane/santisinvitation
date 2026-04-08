@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import santiagoImg from "@/assets/santiago-soccer.png";
 
 const SoccerBall = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -68,6 +69,9 @@ const Index = () => {
         >
           <motion.div className="text-center space-y-1" variants={fadeUp} custom={0}>
             <SoccerBall className="w-6 h-6 text-primary mx-auto mb-4 opacity-40" />
+            <div className="w-40 h-40 mx-auto mb-4 rounded-full overflow-hidden border-2 border-primary/30">
+              <img src={santiagoImg} alt="Santiago jugando fútbol" className="w-full h-full object-cover object-top" />
+            </div>
             <h2 className="font-heading text-2xl font-semibold">Santiago Luvianos</h2>
             <p className="text-muted-foreground text-sm">14 años</p>
           </motion.div>
