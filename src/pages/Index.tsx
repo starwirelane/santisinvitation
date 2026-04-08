@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import santiagoImg from "@/assets/santiago-soccer.png";
 
 const SoccerBall = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
