@@ -13,6 +13,8 @@ const fadeUp = {
   }),
 };
 
+const [showGifts, setShowGifts] = "placeholder"; // just to track state - will use in component
+
 const RSVP_DEADLINE = new Date("2026-06-07T23:59:59");
 
 const RsvpCountdown = () => {
