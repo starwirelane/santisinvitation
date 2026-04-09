@@ -1,8 +1,5 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import giftJerseys from "@/assets/gift-jerseys.jpg";
-import giftCash from "@/assets/gift-cash.jpg";
-import giftCards from "@/assets/gift-cards.jpg";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -15,17 +12,17 @@ const fadeUp = {
 
 const gifts = [
   {
-    img: giftJerseys,
+    emoji: "👕",
     title: "Jerseys de fútbol",
     desc: "De cualquier equipo — Liga MX, Premier League, selecciones... ¡todos valen!",
   },
   {
-    img: giftCash,
+    emoji: "💵",
     title: "Dinero",
     desc: "Siempre es bienvenido para lo que Santiago necesite.",
   },
   {
-    img: giftCards,
+    emoji: "🎫",
     title: "Tarjetas de regalo",
     desc: "Amazon, Nike, Visa — cualquier tarjeta es una buena opción.",
   },
@@ -50,21 +47,12 @@ const Gifts = () => {
           {gifts.map((gift, i) => (
             <motion.div
               key={gift.title}
-              className="bg-card rounded-2xl overflow-hidden shadow-sm border border-border"
+              className="bg-card rounded-2xl overflow-hidden shadow-sm border border-border p-6 flex items-center gap-5"
               variants={fadeUp}
               custom={i + 1}
             >
-              <div className="h-44 overflow-hidden">
-                <img
-                  src={gift.img}
-                  alt={gift.title}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                  width={640}
-                  height={640}
-                />
-              </div>
-              <div className="p-5 space-y-1">
+              <span className="text-5xl flex-shrink-0">{gift.emoji}</span>
+              <div className="space-y-1">
                 <h3 className="font-heading font-semibold text-base">{gift.title}</h3>
                 <p className="text-muted-foreground text-sm">{gift.desc}</p>
               </div>
