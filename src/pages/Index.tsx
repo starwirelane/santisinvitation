@@ -178,8 +178,12 @@ const Index = () => {
         )}
 
         {step === 2 && (
-          <motion.section key="rsvp" {...fade} className="min-h-screen px-6 py-20 flex items-center justify-center">
-            <div className="max-w-md w-full mx-auto space-y-8">
+          <motion.section key="rsvp" {...fade} className="min-h-screen relative px-6 py-20 flex items-center justify-center">
+            <div className="absolute inset-0">
+              <img src={fieldTexture} alt="" className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+            </div>
+            <div className="relative z-10 max-w-md w-full mx-auto space-y-8">
               <RsvpCountdown onNext={() => setStep(3)} />
             </div>
           </motion.section>
