@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import fieldTexture from "@/assets/field-texture.jpg";
 import jerseyImg from "@/assets/jersey.jpg";
 import moneyImg from "@/assets/money.jpg";
 import giftcardImg from "@/assets/gift-cards.jpg";
@@ -33,11 +34,14 @@ const gifts = [
 
 const Gifts = () => {
   return (
-    <div className="min-h-screen relative flex items-center justify-center px-6 py-16" style={{ background: "linear-gradient(135deg, #1a1200 0%, #3d2b00 40%, #1a1200 100%)" }}>
+    <div className="min-h-screen relative flex items-center justify-center px-6 py-16">
 
-      {/* Gold glow circles */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 rounded-full opacity-20" style={{ background: "radial-gradient(circle, #f5c518 0%, transparent 70%)" }} />
-      <div className="absolute bottom-0 right-0 w-64 h-64 rounded-full opacity-10" style={{ background: "radial-gradient(circle, #f5c518 0%, transparent 70%)" }} />
+      {/* Blurred soccer field background with gold overlay */}
+      <div className="absolute inset-0">
+        <img src={fieldTexture} alt="" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 backdrop-blur-sm" style={{ background: "rgba(40, 24, 0, 0.75)" }} />
+        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at top, rgba(245,197,24,0.15) 0%, transparent 70%)" }} />
+      </div>
 
       <motion.div
         className="relative z-10 max-w-md w-full space-y-8"
@@ -57,8 +61,8 @@ const Gifts = () => {
             <motion.div
               key={gift.title}
               className="rounded-2xl p-6 flex items-center gap-5 transition-all duration-300"
-              style={{ background: "rgba(245,197,24,0.08)", border: "1px solid rgba(245,197,24,0.25)" }}
-              whileHover={{ background: "rgba(245,197,24,0.15)" }}
+              style={{ background: "rgba(245,197,24,0.08)", border: "1px solid rgba(245,197,24,0.25)", backdropFilter: "blur(8px)" }}
+              whileHover={{ background: "rgba(245,197,24,0.15)" } as any}
               variants={fadeUp}
               custom={i + 1}
             >
