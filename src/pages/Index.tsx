@@ -173,8 +173,11 @@ const Index = () => {
         </motion.div>
       </section>
 
+      {/* ===== TRANSITION DIVIDER ===== */}
+      <div className="h-32 bg-gradient-to-b from-foreground/80 to-background" />
+
       {/* ===== MAIN CONTENT ===== */}
-      <section id="main" className="px-6 py-16">
+      <section id="main" className="min-h-screen px-6 py-20 flex items-center justify-center">
         <motion.div
           className="max-w-md w-full mx-auto space-y-8"
           initial="hidden"
@@ -205,7 +208,7 @@ const Index = () => {
             <div className="space-y-4 text-sm">
               {[
                 ["📅", "Evento", "Graduación"],
-                ["🗓️", "Fecha", "Sábado, 13 de junio"],
+                ["🗓️", "Fecha", "Sábado, 13 de Junio"],
                 ["🕒", "Hora", "3:30 PM"],
                 ["📍", "Ubicación", "Galt, Liberty Road"],
               ].map(([icon, label, value]) => (
