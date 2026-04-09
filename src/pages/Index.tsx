@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import santiagoImg from "@/assets/santiago-soccer.png";
 import heroBg from "@/assets/soccer-hero-bg.jpg";
