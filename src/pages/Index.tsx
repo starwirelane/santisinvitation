@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import santiagoImg from "@/assets/santiago-soccer.png";
 import heroBg from "@/assets/soccer-hero-bg.jpg";
