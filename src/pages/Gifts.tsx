@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import fieldTexture from "@/assets/field-texture.jpg";
 import jerseyImg from "@/assets/jersey.jpg";
 import moneyImg from "@/assets/money.jpg";
-import giftcardImg from "@/assets/giftcard.jpg";
+import giftcardImg from "@/assets/gift-cards.jpg";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
