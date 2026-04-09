@@ -157,7 +157,7 @@ const Index = () => {
                 </div>
                 <div>
                   <h2 className="font-heading text-2xl font-bold">Santiago Luvianos</h2>
-                  <p className="text-muted-foreground text-sm mt-1">14 años · Clase 2026</p>
+                  <p className="text-muted-foreground text-sm mt-1">14 years old · Promoted to High School 🎓⚽</p>
                 </div>
               </motion.div>
               <motion.div className="rounded-2xl overflow-hidden h-24 shadow-inner" variants={fadeUp} custom={0.5}>
