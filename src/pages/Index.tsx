@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import santiagoImg from "@/assets/santiago-soccer.png";
 import heroBg from "@/assets/soccer-hero-bg.jpg";
+import fieldTexture from "@/assets/field-texture.jpg";
 
 const fade = {
   initial: { opacity: 0 },
@@ -77,8 +78,8 @@ const RsvpCountdown = ({ onNext }: { onNext: () => void }) => {
       transition={{ delay: 0.3, duration: 0.6 }}
     >
       <div>
-        <h3 className="font-heading text-2xl font-bold">⏳ Confirma tu asistencia</h3>
-        <p className="text-muted-foreground text-sm mt-1">Tiempo restante para confirmar</p>
+        <h3 className="font-heading text-2xl font-bold text-white">⏳ Confirma tu asistencia</h3>
+        <p className="text-white/60 text-sm mt-1">Tiempo restante para confirmar</p>
       </div>
       {!expired ? (
         <div className="flex justify-center gap-2">
@@ -89,22 +90,22 @@ const RsvpCountdown = ({ onNext }: { onNext: () => void }) => {
             [timeLeft.seconds, "Seg"],
           ].map(([val, label], i) => (
             <div key={String(label)} className="flex items-center gap-2">
-              <div className="bg-foreground text-background rounded-2xl px-4 py-4 min-w-[72px] text-center shadow-lg">
+              <div className="bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-2xl px-4 py-4 min-w-[72px] text-center shadow-lg">
                 <p className="font-heading text-3xl font-bold">{String(val).padStart(2, "0")}</p>
                 <p className="text-xs uppercase tracking-wider opacity-50 mt-1">{label}</p>
               </div>
-              {i < 3 && <span className="font-heading text-2xl font-bold text-muted-foreground mb-4">:</span>}
+              {i < 3 && <span className="font-heading text-2xl font-bold text-white/30 mb-4">:</span>}
             </div>
           ))}
         </div>
       ) : (
-        <p className="text-muted-foreground text-sm">La fecha límite para confirmar ha pasado</p>
+        <p className="text-white/70 text-sm">La fecha límite para confirmar ha pasado</p>
       )}
-      <p className="text-xs text-muted-foreground">Confirma antes del 7 de junio de 2026</p>
-      <a href={"sms:209-663-3948"} className="inline-flex items-center justify-center gap-2 w-full px-8 py-4 rounded-full bg-foreground text-background font-heading font-bold text-sm shadow-lg hover:scale-105 transition-transform duration-300">
+      <p className="text-xs text-white/50">Confirma antes del 7 de junio de 2026</p>
+      <a href={"sms:209-663-3948"} className="inline-flex items-center justify-center gap-2 w-full px-8 py-4 rounded-full bg-white text-black font-heading font-bold text-sm shadow-lg hover:scale-105 transition-transform duration-300">
         💬 Enviar texto al 209-663-3948
       </a>
-      <button onClick={onNext} className="w-full px-8 py-4 rounded-full border border-border text-foreground font-heading font-semibold text-sm hover:bg-muted transition-all duration-300">
+      <button onClick={onNext} className="w-full px-8 py-4 rounded-full border border-white/30 text-white font-heading font-semibold text-sm hover:bg-white/10 transition-all duration-300">
         🎁 Ver ideas de regalo
       </button>
     </motion.div>
