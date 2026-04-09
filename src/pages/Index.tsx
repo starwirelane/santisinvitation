@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import santiagoImg from "@/assets/santiago-soccer.png";
 import heroBg from "@/assets/soccer-hero-bg.jpg";
@@ -12,6 +12,8 @@ const fadeUp = {
     transition: { delay: i * 0.12, duration: 0.6, ease: "easeOut" as const },
   }),
 };
+
+
 
 const RSVP_DEADLINE = new Date("2026-06-07T23:59:59");
 
@@ -88,6 +90,8 @@ const RsvpCountdown = () => {
 };
 
 const Index = () => {
+  const [showGifts, setShowGifts] = useState(false);
+
   const scrollToContent = () => {
     document.getElementById("main")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -173,10 +177,10 @@ const Index = () => {
         </motion.div>
       </section>
 
-      {/* ===== TRANSITION DIVIDER ===== */}
+      {/* ===== TRANSITION ===== */}
       <div className="h-32 bg-gradient-to-b from-foreground/80 to-background" />
 
-      {/* ===== MAIN CONTENT ===== */}
+      {/* ===== PAGE 2 — EVENT INFO ===== */}
       <section id="main" className="min-h-screen px-6 py-20 flex items-center justify-center">
         <motion.div
           className="max-w-md w-full mx-auto space-y-8"
@@ -185,7 +189,7 @@ const Index = () => {
           viewport={{ once: true, margin: "-50px" }}
         >
           {/* Photo + Name */}
-          <motion.div className="text-center space-y-4 pt-4" variants={fadeUp} custom={0}>
+          <motion.div className="text-center space-y-4" variants={fadeUp} custom={0}>
             <div className="w-36 h-36 mx-auto rounded-2xl overflow-hidden shadow-xl border-4 border-card rotate-3 hover:rotate-0 transition-transform duration-500">
               <img src={santiagoImg} alt="Santiago jugando fútbol" className="w-full h-full object-cover object-top" />
             </div>
@@ -226,27 +230,41 @@ const Index = () => {
             </div>
           </motion.div>
 
-          {/* Wishlist */}
-          <motion.div className="bg-card rounded-2xl p-7 shadow-sm border border-border space-y-4" variants={fadeUp} custom={2}>
-            <h3 className="font-heading text-base font-semibold text-primary flex items-center gap-2">
-              <span className="text-lg">🎁</span> Lista de regalos
-            </h3>
-            <ul className="space-y-2 text-sm">
-              {[
-                ["👕", "Jerseys de fútbol"],
-                ["💵", "Dinero"],
-                ["🎫", "Tarjetas de regalo"],
-              ].map(([icon, item]) => (
-                <li key={item} className="flex items-center gap-3 bg-warm rounded-xl px-4 py-3">
-                  <span>{icon}</span>
-                  <span className="font-medium text-warm-foreground">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-
           {/* RSVP with Countdown */}
           <RsvpCountdown />
+
+          {/* Gift ideas — subtle toggle */}
+          <motion.div className="text-center space-y-4" variants={fadeUp} custom={3}>
+            <button
+              onClick={() => setShowGifts(!showGifts)}
+              className="text-muted-foreground text-sm hover:text-foreground transition-colors duration-300"
+            >
+              🎁 ¿Ideas de regalo? <span className="underline underline-offset-4">Ver aquí</span>
+            </button>
+
+            <AnimatePresence>
+              {showGifts && (
+                <motion.ul
+                  className="space-y-2 text-sm"
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {[
+                    ["👕", "Jerseys de fútbol"],
+                    ["💵", "Dinero"],
+                    ["🎫", "Tarjetas de regalo"],
+                  ].map(([icon, item]) => (
+                    <li key={item} className="flex items-center gap-3 bg-warm rounded-xl px-4 py-3">
+                      <span>{icon}</span>
+                      <span className="font-medium text-warm-foreground">{item}</span>
+                    </li>
+                  ))}
+                </motion.ul>
+              )}
+            </AnimatePresence>
+          </motion.div>
 
           {/* Footer note */}
           <motion.div className="text-center pb-8 space-y-2" variants={fadeUp} custom={4}>
