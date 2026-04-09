@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import fieldTexture from "@/assets/field-texture.jpg";
 import jerseyImg from "@/assets/jersey.jpg";
 import moneyImg from "@/assets/money.jpg";
 import giftcardImg from "@/assets/gift-cards.jpg";
@@ -34,11 +33,11 @@ const gifts = [
 
 const Gifts = () => {
   return (
-    <div className="min-h-screen relative flex items-center justify-center px-6 py-16">
-      <div className="absolute inset-0">
-        <img src={fieldTexture} alt="" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
-      </div>
+    <div className="min-h-screen relative flex items-center justify-center px-6 py-16" style={{ background: "linear-gradient(135deg, #1a1200 0%, #3d2b00 40%, #1a1200 100%)" }}>
+
+      {/* Gold glow circles */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 rounded-full opacity-20" style={{ background: "radial-gradient(circle, #f5c518 0%, transparent 70%)" }} />
+      <div className="absolute bottom-0 right-0 w-64 h-64 rounded-full opacity-10" style={{ background: "radial-gradient(circle, #f5c518 0%, transparent 70%)" }} />
 
       <motion.div
         className="relative z-10 max-w-md w-full space-y-8"
@@ -46,8 +45,9 @@ const Gifts = () => {
         animate="visible"
       >
         <motion.div className="text-center space-y-2" variants={fadeUp} custom={0}>
-          <h1 className="font-heading text-3xl font-bold text-white">🎁 Ideas de Regalo</h1>
-          <p className="text-white/50 text-sm">
+          <p className="text-4xl mb-2">🏆</p>
+          <h1 className="font-heading text-3xl font-bold" style={{ color: "#f5c518" }}>Ideas de Regalo</h1>
+          <p className="text-sm" style={{ color: "rgba(245,197,24,0.5)" }}>
             No es obligatorio, pero si quieres traer algo, aquí van algunas ideas
           </p>
         </motion.div>
@@ -56,14 +56,16 @@ const Gifts = () => {
           {gifts.map((gift, i) => (
             <motion.div
               key={gift.title}
-              className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 flex items-center gap-5 hover:bg-white/15 transition-all duration-300"
+              className="rounded-2xl p-6 flex items-center gap-5 transition-all duration-300"
+              style={{ background: "rgba(245,197,24,0.08)", border: "1px solid rgba(245,197,24,0.25)" }}
+              whileHover={{ background: "rgba(245,197,24,0.15)" }}
               variants={fadeUp}
               custom={i + 1}
             >
               <img src={gift.img} alt={gift.title} className="w-16 h-16 object-contain flex-shrink-0 rounded-xl" />
               <div className="space-y-1">
-                <h3 className="font-heading font-semibold text-base text-white">{gift.title}</h3>
-                <p className="text-white/60 text-sm">{gift.desc}</p>
+                <h3 className="font-heading font-semibold text-base" style={{ color: "#f5c518" }}>{gift.title}</h3>
+                <p className="text-sm" style={{ color: "rgba(245,197,24,0.6)" }}>{gift.desc}</p>
               </div>
             </motion.div>
           ))}
@@ -72,7 +74,8 @@ const Gifts = () => {
         <motion.div className="text-center pt-4" variants={fadeUp} custom={4}>
           <Link
             to="/"
-            className="inline-block px-8 py-4 rounded-full border border-white/30 text-white font-heading font-semibold text-sm hover:bg-white/10 transition-all duration-300"
+            className="inline-block px-8 py-4 rounded-full font-heading font-semibold text-sm transition-all duration-300"
+            style={{ border: "1px solid rgba(245,197,24,0.4)", color: "#f5c518" }}
           >
             ← Volver a la invitación
           </Link>
