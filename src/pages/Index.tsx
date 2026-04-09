@@ -81,10 +81,10 @@ const RsvpCountdown = () => {
       )}
 
       <a
-        href="tel:209-663-3948"
+        href="sms:209-663-3948"
         className="inline-block px-8 py-3.5 rounded-full bg-secondary text-secondary-foreground font-heading font-semibold text-sm shadow-lg hover:scale-105 transition-transform duration-300"
       >
-        📞 209-663-3948
+        💬 Enviar texto al 209-663-3948
       </a>
     </motion.div>
   );
