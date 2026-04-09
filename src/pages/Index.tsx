@@ -105,9 +105,9 @@ const RsvpCountdown = ({ onNext }: { onNext: () => void }) => {
       <a href={"sms:209-663-3948"} className="inline-flex items-center justify-center gap-2 w-full px-8 py-4 rounded-full bg-white text-black font-heading font-bold text-sm shadow-lg hover:scale-105 transition-transform duration-300">
         💬 Enviar texto al 209-663-3948
       </a>
-      <button onClick={onNext} className="w-full px-8 py-4 rounded-full border border-white/30 text-white font-heading font-semibold text-sm hover:bg-white/10 transition-all duration-300">
+      <Link to="/gifts" className="inline-flex items-center justify-center w-full px-8 py-4 rounded-full border border-white/30 text-white font-heading font-semibold text-sm hover:bg-white/10 transition-all duration-300">
         🎁 Ver ideas de regalo
-      </button>
+      </Link>
     </motion.div>
   );
 };
