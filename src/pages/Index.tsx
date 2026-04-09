@@ -47,25 +47,13 @@ const HeroCountdown = () => {
   const { timeLeft } = useCountdown();
   return (
     <motion.div
-      className="mt-8 flex flex-col items-center gap-3"
+      className="absolute top-5 right-5 z-20"
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1, duration: 0.8 }}
     >
-      <p className="text-primary-foreground/40 text-xs uppercase tracking-widest">RSVP cierra en</p>
-      <div className="flex items-center gap-2">
-        {[
-          [timeLeft.days, "Días"],
-          [timeLeft.hours, "Hrs"],
-          [timeLeft.minutes, "Min"],
-          [timeLeft.seconds, "Seg"],
-        ].map(([val, label], i) => (
-          <div key={String(label)} className="flex items-center gap-2">
-            <div className="text-center">
-              <p className="font-heading text-2xl font-bold text-primary-foreground">{String(val).padStart(2, "0")}</p>
-              <p className="text-primary-foreground/40 text-[10px] uppercase tracking-wider">{label}</p>
-            </div>
-            {i < 3 && <span className="font-heading text-xl font-bold text-primary-foreground/30 mb-3">:</span>}
-          </div>
-        ))}
+      <div className="bg-black/30 backdrop-blur-sm rounded-full px-4 py-2">
+        <p className="text-primary-foreground/80 text-xs font-heading font-medium">
+          {timeLeft.days} days · {timeLeft.hours} hrs until RSVP
+        </p>
       </div>
     </motion.div>
   );
