@@ -75,7 +75,7 @@ const RsvpCountdown = ({ onNext }: { onNext: () => void }) => {
         <p className="text-primary-foreground/70 text-sm">La fecha límite para confirmar ha pasado</p>
       )}
       
-        href="sms:209-663-3948"
+        href={"sms:209-663-3948"}
         className="inline-block px-8 py-3.5 rounded-full bg-secondary text-secondary-foreground font-heading font-semibold text-sm shadow-lg hover:scale-105 transition-transform duration-300"
       >
         💬 Enviar texto al 209-663-3948
