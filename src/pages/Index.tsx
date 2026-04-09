@@ -50,12 +50,20 @@ const HeroCountdown = () => {
       className="absolute top-5 right-5 z-20"
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1, duration: 0.8 }}
     >
-      <div className="bg-black/30 backdrop-blur-sm rounded-full px-4 py-2">
-        <p className="text-primary-foreground/80 text-xs font-heading font-medium">
-          {timeLeft.days} days · {timeLeft.hours} hrs until RSVP
-        </p>
+      <div className="flex gap-6">
+        <div className="text-center">
+          <p className="font-heading text-3xl font-bold text-primary-foreground">{timeLeft.days}</p>
+          <div className="border-t border-primary-foreground/30 mt-1 pt-1">
+            <p className="text-primary-foreground/50 text-[10px] uppercase tracking-widest">Days left</p>
+          </div>
+        </div>
+        <div className="text-center">
+          <p className="font-heading text-3xl font-bold text-primary-foreground">{timeLeft.hours}</p>
+          <div className="border-t border-primary-foreground/30 mt-1 pt-1">
+            <p className="text-primary-foreground/50 text-[10px] uppercase tracking-widest">Hours left</p>
+          </div>
+        </div>
       </div>
-    </motion.div>
   );
 };
 
