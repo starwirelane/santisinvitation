@@ -1,5 +1,6 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import santiagoImg from "@/assets/santiago-soccer.png";
 import heroBg from "@/assets/soccer-hero-bg.jpg";
 import fieldTexture from "@/assets/field-texture.jpg";
@@ -90,7 +91,6 @@ const RsvpCountdown = () => {
 };
 
 const Index = () => {
-  const [showGifts, setShowGifts] = useState(false);
 
   const scrollToContent = () => {
     document.getElementById("main")?.scrollIntoView({ behavior: "smooth" });
@@ -233,37 +233,14 @@ const Index = () => {
           {/* RSVP with Countdown */}
           <RsvpCountdown />
 
-          {/* Gift ideas — subtle toggle */}
-          <motion.div className="text-center space-y-4" variants={fadeUp} custom={3}>
-            <button
-              onClick={() => setShowGifts(!showGifts)}
-              className="text-muted-foreground text-sm hover:text-foreground transition-colors duration-300"
+          {/* Gift ideas — link to page */}
+          <motion.div className="text-center" variants={fadeUp} custom={3}>
+            <Link
+              to="/gifts"
+              className="inline-block w-full px-8 py-4 rounded-2xl bg-card border border-border text-foreground font-heading font-semibold text-sm shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300"
             >
-              🎁 ¿Ideas de regalo? <span className="underline underline-offset-4">Ver aquí</span>
-            </button>
-
-            <AnimatePresence>
-              {showGifts && (
-                <motion.ul
-                  className="space-y-2 text-sm"
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {[
-                    ["👕", "Jerseys de fútbol"],
-                    ["💵", "Dinero"],
-                    ["🎫", "Tarjetas de regalo"],
-                  ].map(([icon, item]) => (
-                    <li key={item} className="flex items-center gap-3 bg-warm rounded-xl px-4 py-3">
-                      <span>{icon}</span>
-                      <span className="font-medium text-warm-foreground">{item}</span>
-                    </li>
-                  ))}
-                </motion.ul>
-              )}
-            </AnimatePresence>
+              🎁 ¿Ideas de regalo? Toca aquí
+            </Link>
           </motion.div>
 
           {/* Footer note */}
