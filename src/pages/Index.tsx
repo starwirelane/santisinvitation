@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import santiagoImg from "@/assets/santiago-soccer.png";
 import heroBg from "@/assets/soccer-hero-bg.jpg";
-import fieldTexture from "@/assets/field-texture.jpg";
 
 const fade = {
   initial: { opacity: 0 },
@@ -150,49 +149,28 @@ const Index = () => {
 
         {step === 1 && (
           <motion.section key="details" {...fade} className="min-h-screen px-6 py-20 flex items-center justify-center">
-            <motion.div className="max-w-md w-full mx-auto space-y-8" initial="hidden" animate="visible" viewport={{ once: true, margin: "-50px" }}>
-              <motion.div className="text-center space-y-4" variants={fadeUp} custom={0}>
-                <div className="w-36 h-36 mx-auto rounded-2xl overflow-hidden shadow-xl border-4 border-card rotate-3 hover:rotate-0 transition-transform duration-500">
-                  <img src={santiagoImg} alt="Santiago jugando fútbol" className="w-full h-full object-cover object-top" />
+            <motion.div className="max-w-md w-full mx-auto space-y-8" initial="hidden" animate="visible">
+              <motion.div className="flex flex-col sm:flex-row items-center gap-8 w-full" variants={fadeUp} custom={0}>
+                <div className="flex-shrink-0">
+                  <img src={santiagoImg} alt="Santiago" className="w-44 h-44 object-cover rounded-full shadow-xl border-4 border-primary" />
                 </div>
-                <div>
-                  <h2 className="font-heading text-2xl font-bold">Santiago Luvianos</h2>
-                  <p className="text-muted-foreground text-sm mt-1">14 años · Promovido a la Preparatoria 🎓⚽</p>
-                </div>
-              </motion.div>
-              <motion.div className="rounded-2xl overflow-hidden h-24 shadow-inner" variants={fadeUp} custom={0.5}>
-                <img src={fieldTexture} alt="" className="w-full h-full object-cover" loading="lazy" width={1280} height={512} />
-              </motion.div>
-              <motion.div className="max-w-md w-full mx-auto space-y-8" initial="hidden" animate="visible" viewport={{ once: true, margin: "-50px" }}>   <motion.div className="flex flex-col items-center gap-8" variants={fadeUp} custom={0}>     <div className="flex flex-col sm:flex-row items-center gap-8 w-full">       <div className="flex-shrink-0">         <img src={santiagoImg} alt="Santiago" className="w-48 h-48 object-cover rounded-full shadow-xl border-4 border-primary" />       </div>       <div className="text-center sm:text-left space-y-3">         <p className="text-muted-foreground text-xs uppercase tracking-widest">Están invitados a la</p>         <h2 className="font-heading text-3xl font-extrabold leading-tight">Graduación de<br />Santiago Luvianos</h2>         <div className="space-y-1 pt-2">           <p className="font-heading text-lg font-semibold">3:30 PM</p>           <p className="font-heading text-lg font-semibold">10069 Liberty Road</p>           <p className="font-heading text-lg font-semibold">Galt, CA</p>         </div>       </div>     </div>     <motion.div className="text-center px-6 py-5 rounded-2xl bg-muted w-full" variants={fadeUp} custom={2}>       <p className="text-base leading-relaxed text-muted-foreground">         Póngase su camiseta de fútbol favorita y acompáñanos a celebrar un nuevo capítulo en la vida de Santiago ⚽       </p>     </motion.div>     <motion.button onClick={() => setStep(2)} className="w-full px-12 py-4 rounded-full bg-primary text-primary-foreground font-heading font-bold text-base shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300" variants={fadeUp} custom={3} whileTap={{ scale: 0.97 }}>       ✅ Confirmar RSVP     </motion.button>   </motion.div> </motion.div>
-                <h3 className="font-heading text-base font-semibold text-primary flex items-center gap-2">
-                  <span className="text-lg">🎓</span> Detalles del evento
-                </h3>
-                <div className="space-y-4 text-sm">
-                  {[
-                    ["📅", "Evento", "Graduación"],
-                    ["🗓️", "Fecha", "Sábado, 13 de Junio"],
-                    ["🕒", "Hora", "3:30 PM"],
-                    ["📍", "Ubicación", "Galt, Liberty Road"],
-                  ].map(([icon, label, value]) => (
-                    <div key={label} className="flex items-center gap-3">
-                      <span className="w-9 h-9 rounded-lg bg-muted flex items-center justify-center flex-shrink-0 text-sm">{icon}</span>
-                      <div>
-                        <p className="text-muted-foreground text-xs">{label}</p>
-                        <p className="font-medium">{value}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div className="flex items-center gap-2 pt-3 border-t border-border text-xs text-secondary font-medium">
-                  <span>☀️</span> Evento al aire libre
+                <div className="text-center sm:text-left space-y-3">
+                  <p className="text-muted-foreground text-xs uppercase tracking-widest">Están invitados a la</p>
+                  <h2 className="font-heading text-3xl font-extrabold leading-tight">Graduación de<br />Santiago Luvianos</h2>
+                  <div className="space-y-1 pt-2">
+                    <p className="font-heading text-lg font-semibold">Sábado, 13 de Junio</p>
+                    <p className="font-heading text-lg font-semibold">3:30 PM</p>
+                    <p className="font-heading text-lg font-semibold">10069 Liberty Road</p>
+                    <p className="font-heading text-lg font-semibold">Galt, CA</p>
+                  </div>
                 </div>
               </motion.div>
-              <motion.div className="text-center space-y-2" variants={fadeUp} custom={2}>
-                <div className="inline-block px-5 py-3 rounded-full bg-warm">
-                  <p className="text-sm text-warm-foreground">Ven con tu jersey favorito ⚽</p>
-                </div>
+              <motion.div className="text-center px-6 py-5 rounded-2xl bg-muted w-full" variants={fadeUp} custom={1}>
+                <p className="text-base leading-relaxed text-muted-foreground">
+                  Póngase su camiseta de fútbol favorita y acompáñanos a celebrar un nuevo capítulo en la vida de Santiago ⚽
+                </p>
               </motion.div>
-              <motion.button onClick={() => setStep(2)} className="w-full px-12 py-4 rounded-full bg-primary text-primary-foreground font-heading font-bold text-base shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300" variants={fadeUp} custom={3} whileTap={{ scale: 0.97 }}>
+              <motion.button onClick={() => setStep(2)} className="w-full px-12 py-4 rounded-full bg-primary text-primary-foreground font-heading font-bold text-base shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300" variants={fadeUp} custom={2} whileTap={{ scale: 0.97 }}>
                 ✅ Confirmar RSVP
               </motion.button>
             </motion.div>
