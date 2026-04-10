@@ -76,18 +76,9 @@ const FloatingParticles = () => {
         <motion.div
           key={i}
           className="absolute text-2xl opacity-20"
-          style={{ left: `${10 + (i * 9)}%`, top: `${Math.random() * 100}%` }}
-          animate={{
-            y: [-20, -120, -20],
-            opacity: [0.1, 0.3, 0.1],
-            rotate: [0, 360],
-          }}
-          transition={{
-            duration: 4 + i * 0.7,
-            repeat: Infinity,
-            delay: i * 0.5,
-            ease: "easeInOut",
-          }}
+          style={{ left: `${10 + (i * 9)}%`, top: `${20 + (i * 7)}%` }}
+          animate={{ y: [-20, -120, -20], opacity: [0.1, 0.3, 0.1], rotate: [0, 360] }}
+          transition={{ duration: 4 + i * 0.7, repeat: Infinity, delay: i * 0.5, ease: "easeInOut" }}
         >
           {item}
         </motion.div>
@@ -110,47 +101,20 @@ const DeclineScreen = ({ onBack }: { onBack: () => void }) => {
         <motion.div
           key={i}
           className="absolute text-4xl pointer-events-none"
-          initial={{ opacity: 0, scale: 0, x: 0, y: 0 }}
-          animate={{
-            opacity: [0, 1, 0],
-            scale: [0, 1.5, 0],
-            x: Math.cos((i / emojis.length) * Math.PI * 2) * 180,
-            y: Math.sin((i / emojis.length) * Math.PI * 2) * 180,
-          }}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: [0, 1, 0], scale: [0, 1.5, 0], x: Math.cos((i / emojis.length) * Math.PI * 2) * 180, y: Math.sin((i / emojis.length) * Math.PI * 2) * 180 }}
           transition={{ delay: i * 0.1, duration: 2, repeat: Infinity, repeatDelay: 1 }}
           style={{ left: "50%", top: "50%" }}
         >
           {emoji}
         </motion.div>
       ))}
-      <motion.div
-        className="relative z-10 space-y-6"
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 0.3, duration: 0.6 }}
-      >
-        <motion.p
-          className="text-7xl"
-          animate={{ rotate: [0, -10, 10, -10, 10, 0] }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-        >
-          😢
-        </motion.p>
+      <motion.div className="relative z-10 space-y-6" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.3, duration: 0.6 }}>
+        <motion.p className="text-7xl" animate={{ rotate: [0, -10, 10, -10, 10, 0] }} transition={{ delay: 0.5, duration: 0.8 }}>😢</motion.p>
         <h2 className="font-heading text-3xl font-extrabold text-white">¡Qué lástima!</h2>
-        <p className="text-white/60 text-lg max-w-xs">
-          Te vamos a extrañar, pero esperamos que tengas un día increíble 🌟
-        </p>
-        <motion.p
-          className="text-white/40 text-sm"
-          animate={{ opacity: [0.4, 1, 0.4] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          ¡Que te vaya súper bien! ⚽
-        </motion.p>
-        <button
-          onClick={onBack}
-          className="inline-block mt-4 px-8 py-3 rounded-full border border-white/20 text-white/60 font-heading text-sm hover:bg-white/10 transition-all duration-300"
-        >
+        <p className="text-white/60 text-lg max-w-xs">Te vamos a extrañar, pero esperamos que tengas un día increíble 🌟</p>
+        <motion.p className="text-white/40 text-sm" animate={{ opacity: [0.4, 1, 0.4] }} transition={{ duration: 2, repeat: Infinity }}>¡Que te vaya súper bien! ⚽</motion.p>
+        <button onClick={onBack} className="inline-block mt-4 px-8 py-3 rounded-full border border-white/20 text-white/60 font-heading text-sm hover:bg-white/10 transition-all duration-300">
           ← Volver al inicio
         </button>
       </motion.div>
@@ -158,7 +122,31 @@ const DeclineScreen = ({ onBack }: { onBack: () => void }) => {
   );
 };
 
-const RunAwayButton = ({ onDecline }: { onDecline: () => void }) => {   const [pos, setPos] = useState({ x: 0, y: 0 });   const [clicks, setClicks] = useState(0);    const runAway = () => {     const x = (Math.random() - 0.5) * 300;     const y = (Math.random() - 0.5) * 200;     setPos({ x, y });     setClicks(c => c + 1);   };    return (     <motion.button       onClick={clicks > 4 ? onDecline : runAway}       onHoverStart={runAway}       animate={{ x: pos.x, y: pos.y }}       transition={{ type: "spring", stiffness: 300, damping: 20 }}       className="w-full px-8 py-4 rounded-2xl border border-white/20 text-white/60 font-heading font-semibold text-sm"     >       {clicks > 4 ? "😢 Está bien..." : "❌ No puedo ir"}     </motion.button>   ); };  const RsvpChoice = ({ onAccept, onDecline }: { onAccept: () => void; onDecline: () => void }) => {
+const RunAwayButton = ({ onDecline }: { onDecline: () => void }) => {
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const [clicks, setClicks] = useState(0);
+
+  const runAway = () => {
+    const x = (Math.random() - 0.5) * 300;
+    const y = (Math.random() - 0.5) * 200;
+    setPos({ x, y });
+    setClicks(c => c + 1);
+  };
+
+  return (
+    <motion.button
+      onClick={clicks > 4 ? onDecline : runAway}
+      onHoverStart={runAway}
+      animate={{ x: pos.x, y: pos.y }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      className="px-8 py-4 rounded-2xl border border-white/20 text-white/60 font-heading font-semibold text-sm"
+    >
+      {clicks > 4 ? "😢 Está bien..." : "❌ No puedo ir"}
+    </motion.button>
+  );
+};
+
+const RsvpChoice = ({ onAccept, onDecline }: { onAccept: () => void; onDecline: () => void }) => {
   const { timeLeft, expired } = useCountdown();
   return (
     <motion.div
@@ -189,17 +177,19 @@ const RunAwayButton = ({ onDecline }: { onDecline: () => void }) => {   const [p
           ))}
         </div>
       )}
-      <div className="flex flex-col gap-4 pt-2">
+      <div className="flex flex-col items-center gap-6 pt-2">
         <motion.button
           onClick={onAccept}
-          className="w-full px-8 py-5 rounded-2xl font-heading font-extrabold text-lg shadow-lg transition-all duration-300"
-          style={{ background: "linear-gradient(135deg, #22c55e, #16a34a)", color: "white" }}
+          className="w-full px-8 py-5 rounded-2xl font-heading font-extrabold text-lg shadow-lg text-white"
+          style={{ background: "linear-gradient(135deg, #22c55e, #16a34a)" }}
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
         >
           ✅ ¡Sí voy! 🎉
         </motion.button>
         <RunAwayButton onDecline={onDecline} />
+      </div>
+    </motion.div>
   );
 };
 
@@ -252,7 +242,7 @@ const Index = () => {
               <motion.div className="flex flex-col sm:flex-row items-center gap-8 w-full" variants={fadeUp} custom={0}>
                 <div className="flex-shrink-0">
                   <div className="relative">
-                    <div className="absolute inset-0 rounded-full animate-pulse" style={{ background: "rgba(59,130,246,0.3)", filter: "blur(12px)" }} />
+                    <div className="absolute inset-0 rounded-full" style={{ background: "rgba(59,130,246,0.3)", filter: "blur(12px)" }} />
                     <img src={santiagoImg} alt="Santiago" className="relative w-44 h-44 object-cover rounded-full shadow-xl border-4 border-blue-500/50" />
                   </div>
                 </div>
@@ -267,24 +257,12 @@ const Index = () => {
                   </div>
                 </div>
               </motion.div>
-              <motion.div
-                className="text-center px-6 py-5 rounded-2xl w-full"
-                style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
-                variants={fadeUp}
-                custom={1}
-              >
+              <motion.div className="text-center px-6 py-5 rounded-2xl w-full" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }} variants={fadeUp} custom={1}>
                 <p className="text-base leading-relaxed text-white/60">
                   Póngase su camiseta de fútbol favorita y acompáñanos a celebrar un nuevo capítulo en la vida de Santiago ⚽
                 </p>
               </motion.div>
-              <motion.button
-                onClick={() => setStep(2)}
-                className="w-full px-12 py-4 rounded-full font-heading font-bold text-base shadow-lg hover:scale-105 transition-all duration-300 text-white"
-                style={{ background: "linear-gradient(135deg, #3b82f6, #1d4ed8)" }}
-                variants={fadeUp}
-                custom={2}
-                whileTap={{ scale: 0.97 }}
-              >
+              <motion.button onClick={() => setStep(2)} className="w-full px-12 py-4 rounded-full font-heading font-bold text-base shadow-lg hover:scale-105 transition-all duration-300 text-white" style={{ background: "linear-gradient(135deg, #3b82f6, #1d4ed8)" }} variants={fadeUp} custom={2} whileTap={{ scale: 0.97 }}>
                 ✅ Confirmar RSVP
               </motion.button>
             </motion.div>
@@ -304,18 +282,29 @@ const Index = () => {
         )}
 
         {step === 3 && (
-          <motion.section key="gifts-redirect" {...fade} className="min-h-screen px-6 py-20 flex items-center justify-center">
-            <div className="max-w-md w-full mx-auto text-center space-y-6">
-              <motion.p className="text-6xl" animate={{ rotate: [0, -10, 10, -10, 0], scale: [1, 1.2, 1] }} transition={{ duration: 0.6 }}>🎉</motion.p>
-              <h2 className="font-heading text-3xl font-extrabold">¡Nos vemos ahí!</h2>
-              <p className="text-muted-foreground text-sm">Santiago está emocionado de verte 🎓⚽</p>
-              <Link to="/gifts" className="inline-block w-full px-8 py-4 rounded-2xl bg-primary text-primary-foreground font-heading font-semibold text-base shadow-lg hover:scale-105 transition-all duration-300">
+          <motion.section key="confirmed" {...fade} className="min-h-screen relative px-6 py-20 flex items-center justify-center overflow-hidden">
+            <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #0a0a1a 0%, #0d1b2a 50%, #0a0a1a 100%)" }} />
+            <FloatingParticles />
+            <motion.div className="relative z-10 max-w-md w-full mx-auto text-center space-y-8" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+              <motion.p className="text-6xl" animate={{ rotate: [0, -10, 10, -10, 0], scale: [1, 1.3, 1] }} transition={{ duration: 0.8 }}>🎉</motion.p>
+              <div>
+                <h2 className="font-heading text-3xl font-extrabold text-white">¡Nos vemos ahí!</h2>
+                <p className="text-white/50 text-sm mt-2">Santiago está emocionado de verte 🎓⚽</p>
+              </div>
+              <div className="rounded-2xl p-6 space-y-3 text-left" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
+                <p className="text-white/80 text-sm font-semibold font-heading">📱 Confirma por mensaje de texto:</p>
+                <a href={"sms:209-663-3948"} className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 rounded-full font-heading font-bold text-sm text-white" style={{ background: "linear-gradient(135deg, #22c55e, #16a34a)" }}>
+                  💬 Enviar texto al 209-663-3948
+                </a>
+                <p className="text-white/40 text-xs text-center">Confirma con Esmeralda Luvianos antes del 7 de junio</p>
+              </div>
+              <Link to="/gifts" className="inline-block w-full px-8 py-4 rounded-2xl font-heading font-semibold text-base text-white transition-all duration-300 hover:scale-105" style={{ background: "linear-gradient(135deg, #f5c518, #d4a017)" }}>
                 🎁 Ver ideas de regalo →
               </Link>
-              <button onClick={() => setStep(0)} className="text-xs text-muted-foreground underline">
+              <button onClick={() => setStep(0)} className="text-xs text-white/30 underline">
                 Volver al inicio
               </button>
-            </div>
+            </motion.div>
           </motion.section>
         )}
 
