@@ -68,7 +68,69 @@ const HeroCountdown = () => {
   );
 };
 
-const RsvpCountdown = ({ onNext }: { onNext: () => void }) => {
+const DeclineScreen = () => {
+  const emojis = ["⚽", "🎓", "🌟", "✨", "🎉", "💫", "🏆", "❤️"];
+  return (
+    <motion.div
+      className="min-h-screen relative flex flex-col items-center justify-center px-6 text-center overflow-hidden"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6 }}
+      style={{ background: "linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 50%, #0f0f0f 100%)" }}
+    >
+      {emojis.map((emoji, i) => (
+        <motion.div
+          key={i}
+          className="absolute text-4xl pointer-events-none"
+          initial={{ opacity: 0, scale: 0, x: 0, y: 0 }}
+          animate={{
+            opacity: [0, 1, 0],
+            scale: [0, 1.5, 0],
+            x: Math.cos((i / emojis.length) * Math.PI * 2) * 180,
+            y: Math.sin((i / emojis.length) * Math.PI * 2) * 180,
+          }}
+          transition={{ delay: i * 0.1, duration: 2, repeat: Infinity, repeatDelay: 1 }}
+          style={{ left: "50%", top: "50%" }}
+        >
+          {emoji}
+        </motion.div>
+      ))}
+      <motion.div
+        className="relative z-10 space-y-6"
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ delay: 0.3, duration: 0.6 }}
+      >
+        <motion.p
+          className="text-7xl"
+          animate={{ rotate: [0, -10, 10, -10, 10, 0] }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+        >
+          😢
+        </motion.p>
+        <h2 className="font-heading text-3xl font-extrabold text-white">¡Qué lástima!</h2>
+        <p className="text-white/60 text-lg max-w-xs">
+          Te vamos a extrañar, pero esperamos que tengas un día increíble 🌟
+        </p>
+        <motion.p
+          className="text-white/40 text-sm"
+          animate={{ opacity: [0.4, 1, 0.4] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          ¡Que te vaya súper bien! ⚽
+        </motion.p>
+        <Link
+          to="/"
+          className="inline-block mt-4 px-8 py-3 rounded-full border border-white/20 text-white/60 font-heading text-sm hover:bg-white/10 transition-all duration-300"
+        >
+          ← Volver al inicio
+        </Link>
+      </motion.div>
+    </motion.div>
+  );
+};
+
+const RsvpChoice = ({ onAccept, onDecline }: { onAccept: () => void; onDecline: () => void }) => {
   const { timeLeft, expired } = useCountdown();
   return (
     <motion.div
@@ -77,11 +139,12 @@ const RsvpCountdown = ({ onNext }: { onNext: () => void }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3, duration: 0.6 }}
     >
-      <div>
-        <h3 className="font-heading text-2xl font-bold text-white">⏳ Confirma tu asistencia</h3>
-        <p className="text-white/60 text-sm mt-1">Tiempo restante para confirmar</p>
+      <div className="space-y-2">
+        <h3 className="font-heading text-3xl font-extrabold text-white">¿Vas a venir? 🎓</h3>
+        <p className="text-white/50 text-sm">Confirma tu asistencia antes del 7 de junio</p>
       </div>
-      {!expired ? (
+
+      {!expired && (
         <div className="flex justify-center gap-2">
           {[
             [timeLeft.days, "Días"],
@@ -90,30 +153,45 @@ const RsvpCountdown = ({ onNext }: { onNext: () => void }) => {
             [timeLeft.seconds, "Seg"],
           ].map(([val, label], i) => (
             <div key={String(label)} className="flex items-center gap-2">
-              <div className="bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-2xl px-4 py-4 min-w-[72px] text-center shadow-lg">
-                <p className="font-heading text-3xl font-bold">{String(val).padStart(2, "0")}</p>
+              <div className="bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-2xl px-3 py-3 min-w-[60px] text-center">
+                <p className="font-heading text-2xl font-bold">{String(val).padStart(2, "0")}</p>
                 <p className="text-xs uppercase tracking-wider opacity-50 mt-1">{label}</p>
               </div>
-              {i < 3 && <span className="font-heading text-2xl font-bold text-white/30 mb-4">:</span>}
+              {i < 3 && <span className="font-heading text-xl font-bold text-white/30 mb-3">:</span>}
             </div>
           ))}
         </div>
-      ) : (
-        <p className="text-white/70 text-sm">La fecha límite para confirmar ha pasado</p>
       )}
-      <p className="text-xs text-white/50">Confirma antes del 7 de junio de 2026</p>
-      <a href={"sms:209-663-3948"} className="inline-flex items-center justify-center gap-2 w-full px-8 py-4 rounded-full bg-white text-black font-heading font-bold text-sm shadow-lg hover:scale-105 transition-transform duration-300">
-        💬 Enviar texto al 209-663-3948
-      </a>
-      <Link to="/gifts" className="inline-flex items-center justify-center w-full px-8 py-4 rounded-full border border-white/30 text-white font-heading font-semibold text-sm hover:bg-white/10 transition-all duration-300">
-        🎁 Ver ideas de regalo
-      </Link>
+
+      <div className="flex flex-col gap-4 pt-2">
+        <motion.button
+          onClick={onAccept}
+          className="w-full px-8 py-5 rounded-2xl font-heading font-extrabold text-lg shadow-lg transition-all duration-300"
+          style={{ background: "linear-gradient(135deg, #22c55e, #16a34a)", color: "white" }}
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
+        >
+          ✅ ¡Sí voy! 🎉
+        </motion.button>
+        <motion.button
+          onClick={onDecline}
+          className="w-full px-8 py-4 rounded-2xl border border-white/20 text-white/60 font-heading font-semibold text-sm hover:bg-white/10 transition-all duration-300"
+          whileHover={{ scale: 1.01 }}
+          whileTap={{ scale: 0.97 }}
+        >
+          ❌ No puedo ir
+        </motion.button>
+      </div>
     </motion.div>
   );
 };
 
 const Index = () => {
   const [step, setStep] = useState(0);
+  const [declined, setDeclined] = useState(false);
+
+  if (declined) return <DeclineScreen />;
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <AnimatePresence mode="wait">
@@ -185,7 +263,7 @@ const Index = () => {
               <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
             </div>
             <div className="relative z-10 max-w-md w-full mx-auto space-y-8">
-              <RsvpCountdown onNext={() => setStep(3)} />
+              <RsvpChoice onAccept={() => setStep(3)} onDecline={() => setDeclined(true)} />
             </div>
           </motion.section>
         )}
@@ -193,10 +271,11 @@ const Index = () => {
         {step === 3 && (
           <motion.section key="gifts-redirect" {...fade} className="min-h-screen px-6 py-20 flex items-center justify-center">
             <div className="max-w-md w-full mx-auto text-center space-y-6">
-              <h2 className="font-heading text-2xl font-bold">🎁 Ideas de regalo</h2>
-              <p className="text-muted-foreground text-sm">Mira algunas ideas para el regalo de Santiago</p>
-              <Link to="/gifts" className="inline-block w-full px-8 py-4 rounded-2xl bg-card border border-border text-foreground font-heading font-semibold text-sm shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300">
-                Ver ideas de regalo →
+              <motion.p className="text-6xl" animate={{ rotate: [0, -10, 10, -10, 0], scale: [1, 1.2, 1] }} transition={{ duration: 0.6 }}>🎉</motion.p>
+              <h2 className="font-heading text-3xl font-extrabold">¡Nos vemos ahí!</h2>
+              <p className="text-muted-foreground text-sm">Santiago está emocionado de verte 🎓⚽</p>
+              <Link to="/gifts" className="inline-block w-full px-8 py-4 rounded-2xl bg-primary text-primary-foreground font-heading font-semibold text-base shadow-lg hover:scale-105 transition-all duration-300">
+                🎁 Ver ideas de regalo →
               </Link>
               <button onClick={() => setStep(0)} className="text-xs text-muted-foreground underline">
                 Volver al inicio
