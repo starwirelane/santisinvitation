@@ -68,7 +68,7 @@ const HeroCountdown = () => {
   );
 };
 
-const DeclineScreen = () => {
+const DeclineScreen = ({ onBack }: { onBack: () => void }) => {
   const emojis = ["⚽", "🎓", "🌟", "✨", "🎉", "💫", "🏆", "❤️"];
   return (
     <motion.div
@@ -119,12 +119,12 @@ const DeclineScreen = () => {
         >
           ¡Que te vaya súper bien! ⚽
         </motion.p>
-        <Link
-          to="/"
+        <button
+          onClick={onBack}
           className="inline-block mt-4 px-8 py-3 rounded-full border border-white/20 text-white/60 font-heading text-sm hover:bg-white/10 transition-all duration-300"
         >
           ← Volver al inicio
-        </Link>
+        </button>
       </motion.div>
     </motion.div>
   );
@@ -190,7 +190,7 @@ const Index = () => {
   const [step, setStep] = useState(0);
   const [declined, setDeclined] = useState(false);
 
-  if (declined) return <DeclineScreen />;
+  if (declined) return <DeclineScreen onBack={() => setDeclined(false)} />;
 
   return (
     <div className="min-h-screen bg-background text-foreground">
