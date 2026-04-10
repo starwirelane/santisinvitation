@@ -1,8 +1,5 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import jerseyImg from "@/assets/jersey.jpg";
-import moneyImg from "@/assets/money.jpg";
-import giftcardImg from "@/assets/gift card.jpg";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -16,7 +13,33 @@ const fadeUp = {
 const sections = [
   {
     title: "Jerseys de fútbol",
-    img: jerseyImg,
+    img: null,
+    emoji: "👕",
+    desc: "Le encantan estos equipos — cualquier jersey de uno de ellos sería perfecto:",
+    tags: ["🔵 Barcelona", "🟡 Pumas", "🔵 Argentina", "🔴 España", "🟢 México", "🟡 Brasil", "🔵 Francia"],
+  },
+  {
+    title: "Tarjetas de regalo",
+    img: null,
+    emoji: "🎫",
+    desc: "Cualquiera de estas tarjetas le va a encantar:",
+    tags: ["🎮 Roblox", "🔍 Google", "🍔 In-N-Out", "🎯 Target", "💳 Visa"],
+  },
+  {
+    title: "Equipo de pesca",
+    img: null,
+    emoji: "🎣",
+    desc: "Le encanta la pesca — cualquier cosa relacionada es bienvenida:",
+    tags: ["🪝 Anzuelos", "🎣 Cañas de pescar", "🧰 Caja de pesca", "🐟 Carnadas", "🦺 Chaleco de pesca"],
+  },
+  {
+    title: "Dinero",
+    img: null,
+    emoji: "💵",
+    desc: "Siempre es bienvenido para lo que Santiago necesite 💵",
+    tags: [],
+  },
+];
     desc: "Le encantan estos equipos — cualquier jersey de uno de ellos sería perfecto:",
     tags: ["🔵 Barcelona", "🟡 Pumas", "🔵 Argentina", "🔴 España", "🟢 México", "🟡 Brasil", "🔵 Francia"],
   },
