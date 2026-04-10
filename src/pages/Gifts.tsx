@@ -14,29 +14,37 @@ const fadeUp = {
   }),
 };
 
-const gifts = [
+const sections = [
   {
-    img: jerseyImg,
     title: "Jerseys de fútbol",
-    desc: "De cualquier equipo — Liga MX, Premier League, selecciones... ¡todos valen!",
+    img: jerseyImg,
+    desc: "Le encantan estos equipos — cualquier jersey de uno de ellos sería perfecto:",
+    tags: ["🔵 Barcelona", "🟡 Pumas", "🔵 Argentina", "🔴 España", "🟢 México", "🟡 Brasil", "🔵 Francia"],
   },
   {
-    img: moneyImg,
-    title: "Dinero",
-    desc: "Siempre es bienvenido para lo que Santiago necesite.",
-  },
-  {
-    img: giftcardImg,
     title: "Tarjetas de regalo",
-    desc: "Amazon, Nike, Visa — cualquier tarjeta es una buena opción.",
+    img: giftcardImg,
+    desc: "Cualquiera de estas tarjetas le va a encantar:",
+    tags: ["🎮 Roblox", "🔍 Google", "🍔 In-N-Out", "🎯 Target", "💳 Visa"],
+  },
+  {
+    title: "Equipo de pesca",
+    img: null,
+    emoji: "🎣",
+    desc: "Le encanta la pesca — cualquier cosa relacionada es bienvenida:",
+    tags: ["🪝 Anzuelos", "🎣 Cañas de pescar", "🧰 Caja de pesca", "🐟 Carnadas", "🦺 Chaleco de pesca"],
+  },
+  {
+    title: "Dinero",
+    img: moneyImg,
+    desc: "Siempre es bienvenido para lo que Santiago necesite 💵",
+    tags: [],
   },
 ];
 
 const Gifts = () => {
   return (
     <div className="min-h-screen relative flex items-center justify-center px-6 py-16">
-
-      {/* Blurred soccer field background with gold overlay */}
       <div className="absolute inset-0">
         <img src={fieldTexture} alt="" className="w-full h-full object-cover" />
         <div className="absolute inset-0 backdrop-blur-sm" style={{ background: "rgba(40, 24, 0, 0.75)" }} />
@@ -44,7 +52,7 @@ const Gifts = () => {
       </div>
 
       <motion.div
-        className="relative z-10 max-w-md w-full space-y-8"
+        className="relative z-10 max-w-lg w-full space-y-6 py-8"
         initial="hidden"
         animate="visible"
       >
@@ -56,26 +64,42 @@ const Gifts = () => {
           </p>
         </motion.div>
 
-        <div className="space-y-4">
-          {gifts.map((gift, i) => (
-            <motion.div
-              key={gift.title}
-              className="rounded-2xl p-6 flex items-center gap-5 transition-all duration-300"
-              style={{ background: "rgba(245,197,24,0.08)", border: "1px solid rgba(245,197,24,0.25)", backdropFilter: "blur(8px)" }}
-              whileHover={{ background: "rgba(245,197,24,0.15)" } as any}
-              variants={fadeUp}
-              custom={i + 1}
-            >
-              <img src={gift.img} alt={gift.title} className="w-16 h-16 object-contain flex-shrink-0 rounded-xl" />
-              <div className="space-y-1">
-                <h3 className="font-heading font-semibold text-base" style={{ color: "#f5c518" }}>{gift.title}</h3>
-                <p className="text-sm" style={{ color: "rgba(245,197,24,0.6)" }}>{gift.desc}</p>
+        {sections.map((section, i) => (
+          <motion.div
+            key={section.title}
+            className="rounded-2xl p-6 space-y-4"
+            style={{ background: "rgba(245,197,24,0.08)", border: "1px solid rgba(245,197,24,0.25)", backdropFilter: "blur(8px)" }}
+            variants={fadeUp}
+            custom={i + 1}
+          >
+            <div className="flex items-center gap-4">
+              {section.img ? (
+                <img src={section.img} alt={section.title} className="w-14 h-14 object-contain flex-shrink-0 rounded-xl" />
+              ) : (
+                <span className="text-4xl flex-shrink-0">{section.emoji}</span>
+              )}
+              <div>
+                <h3 className="font-heading font-bold text-lg" style={{ color: "#f5c518" }}>{section.title}</h3>
+                <p className="text-sm" style={{ color: "rgba(245,197,24,0.6)" }}>{section.desc}</p>
               </div>
-            </motion.div>
-          ))}
-        </div>
+            </div>
+            {section.tags.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {section.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-3 py-1 rounded-full text-xs font-heading font-semibold"
+                    style={{ background: "rgba(245,197,24,0.15)", color: "#f5c518", border: "1px solid rgba(245,197,24,0.3)" }}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+          </motion.div>
+        ))}
 
-        <motion.div className="text-center pt-4" variants={fadeUp} custom={4}>
+        <motion.div className="text-center pt-2" variants={fadeUp} custom={5}>
           <Link
             to="/"
             className="inline-block px-8 py-4 rounded-full font-heading font-semibold text-sm transition-all duration-300"
