@@ -158,7 +158,7 @@ const DeclineScreen = ({ onBack }: { onBack: () => void }) => {
   );
 };
 
-const RsvpChoice = ({ onAccept, onDecline }: { onAccept: () => void; onDecline: () => void }) => {
+const RunAwayButton = ({ onDecline }: { onDecline: () => void }) => {   const [pos, setPos] = useState({ x: 0, y: 0 });   const [clicks, setClicks] = useState(0);    const runAway = () => {     const x = (Math.random() - 0.5) * 300;     const y = (Math.random() - 0.5) * 200;     setPos({ x, y });     setClicks(c => c + 1);   };    return (     <motion.button       onClick={clicks > 4 ? onDecline : runAway}       onHoverStart={runAway}       animate={{ x: pos.x, y: pos.y }}       transition={{ type: "spring", stiffness: 300, damping: 20 }}       className="w-full px-8 py-4 rounded-2xl border border-white/20 text-white/60 font-heading font-semibold text-sm"     >       {clicks > 4 ? "😢 Está bien..." : "❌ No puedo ir"}     </motion.button>   ); };  const RsvpChoice = ({ onAccept, onDecline }: { onAccept: () => void; onDecline: () => void }) => {
   const { timeLeft, expired } = useCountdown();
   return (
     <motion.div
@@ -199,16 +199,7 @@ const RsvpChoice = ({ onAccept, onDecline }: { onAccept: () => void; onDecline: 
         >
           ✅ ¡Sí voy! 🎉
         </motion.button>
-        <motion.button
-          onClick={onDecline}
-          className="w-full px-8 py-4 rounded-2xl border border-white/20 text-white/60 font-heading font-semibold text-sm hover:bg-white/10 transition-all duration-300"
-          whileHover={{ scale: 1.01 }}
-          whileTap={{ scale: 0.97 }}
-        >
-          ❌ No puedo ir
-        </motion.button>
-      </div>
-    </motion.div>
+        <RunAwayButton onDecline={onDecline} />
   );
 };
 
