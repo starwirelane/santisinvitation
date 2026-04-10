@@ -68,6 +68,34 @@ const HeroCountdown = () => {
   );
 };
 
+const FloatingParticles = () => {
+  const items = ["⚽", "🌟", "✨", "🎓", "⭐", "💫", "⚽", "🌟", "✨", "🎓"];
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {items.map((item, i) => (
+        <motion.div
+          key={i}
+          className="absolute text-2xl opacity-20"
+          style={{ left: `${10 + (i * 9)}%`, top: `${Math.random() * 100}%` }}
+          animate={{
+            y: [-20, -120, -20],
+            opacity: [0.1, 0.3, 0.1],
+            rotate: [0, 360],
+          }}
+          transition={{
+            duration: 4 + i * 0.7,
+            repeat: Infinity,
+            delay: i * 0.5,
+            ease: "easeInOut",
+          }}
+        >
+          {item}
+        </motion.div>
+      ))}
+    </div>
+  );
+};
+
 const DeclineScreen = ({ onBack }: { onBack: () => void }) => {
   const emojis = ["⚽", "🎓", "🌟", "✨", "🎉", "💫", "🏆", "❤️"];
   return (
@@ -143,7 +171,6 @@ const RsvpChoice = ({ onAccept, onDecline }: { onAccept: () => void; onDecline: 
         <h3 className="font-heading text-3xl font-extrabold text-white">¿Vas a venir? 🎓</h3>
         <p className="text-white/50 text-sm">Confirma tu asistencia antes del 7 de junio</p>
       </div>
-
       {!expired && (
         <div className="flex justify-center gap-2">
           {[
@@ -162,7 +189,6 @@ const RsvpChoice = ({ onAccept, onDecline }: { onAccept: () => void; onDecline: 
           ))}
         </div>
       )}
-
       <div className="flex flex-col gap-4 pt-2">
         <motion.button
           onClick={onAccept}
@@ -190,7 +216,7 @@ const Index = () => {
   const [step, setStep] = useState(0);
   const [declined, setDeclined] = useState(false);
 
-  if (declined) return <DeclineScreen onBack={() => setDeclined(false)} />;
+  if (declined) return <DeclineScreen onBack={() => { setDeclined(false); setStep(0); }} />;
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -227,29 +253,47 @@ const Index = () => {
         )}
 
         {step === 1 && (
-          <motion.section key="details" {...fade} className="min-h-screen px-6 py-20 flex items-center justify-center">
-            <motion.div className="max-w-md w-full mx-auto space-y-8" initial="hidden" animate="visible">
+          <motion.section key="details" {...fade} className="min-h-screen relative px-6 py-20 flex items-center justify-center overflow-hidden">
+            <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #0a0a1a 0%, #0d1b2a 50%, #0a0a1a 100%)" }} />
+            <FloatingParticles />
+            <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at center, rgba(59,130,246,0.08) 0%, transparent 70%)" }} />
+            <motion.div className="relative z-10 max-w-md w-full mx-auto space-y-8" initial="hidden" animate="visible">
               <motion.div className="flex flex-col sm:flex-row items-center gap-8 w-full" variants={fadeUp} custom={0}>
                 <div className="flex-shrink-0">
-                  <img src={santiagoImg} alt="Santiago" className="w-44 h-44 object-cover rounded-full shadow-xl border-4 border-primary" />
+                  <div className="relative">
+                    <div className="absolute inset-0 rounded-full animate-pulse" style={{ background: "rgba(59,130,246,0.3)", filter: "blur(12px)" }} />
+                    <img src={santiagoImg} alt="Santiago" className="relative w-44 h-44 object-cover rounded-full shadow-xl border-4 border-blue-500/50" />
+                  </div>
                 </div>
                 <div className="text-center sm:text-left space-y-3">
-                  <p className="text-muted-foreground text-xs uppercase tracking-widest">Están invitados a la</p>
-                  <h2 className="font-heading text-3xl font-extrabold leading-tight">Graduación de<br />Santiago Luvianos</h2>
+                  <p className="text-white/40 text-xs uppercase tracking-widest">Están invitados a la</p>
+                  <h2 className="font-heading text-3xl font-extrabold leading-tight text-white">Graduación de<br />Santiago Luvianos</h2>
                   <div className="space-y-1 pt-2">
-                    <p className="font-heading text-lg font-semibold">Sábado, 13 de Junio</p>
-                    <p className="font-heading text-lg font-semibold">3:30 PM</p>
-                    <p className="font-heading text-lg font-semibold">10069 Liberty Road</p>
-                    <p className="font-heading text-lg font-semibold">Galt, CA</p>
+                    <p className="font-heading text-lg font-semibold text-white/80">Sábado, 13 de Junio</p>
+                    <p className="font-heading text-lg font-semibold text-white/80">3:30 PM</p>
+                    <p className="font-heading text-lg font-semibold text-white/80">10069 Liberty Road</p>
+                    <p className="font-heading text-lg font-semibold text-white/80">Galt, CA</p>
                   </div>
                 </div>
               </motion.div>
-              <motion.div className="text-center px-6 py-5 rounded-2xl bg-muted w-full" variants={fadeUp} custom={1}>
-                <p className="text-base leading-relaxed text-muted-foreground">
+              <motion.div
+                className="text-center px-6 py-5 rounded-2xl w-full"
+                style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
+                variants={fadeUp}
+                custom={1}
+              >
+                <p className="text-base leading-relaxed text-white/60">
                   Póngase su camiseta de fútbol favorita y acompáñanos a celebrar un nuevo capítulo en la vida de Santiago ⚽
                 </p>
               </motion.div>
-              <motion.button onClick={() => setStep(2)} className="w-full px-12 py-4 rounded-full bg-primary text-primary-foreground font-heading font-bold text-base shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300" variants={fadeUp} custom={2} whileTap={{ scale: 0.97 }}>
+              <motion.button
+                onClick={() => setStep(2)}
+                className="w-full px-12 py-4 rounded-full font-heading font-bold text-base shadow-lg hover:scale-105 transition-all duration-300 text-white"
+                style={{ background: "linear-gradient(135deg, #3b82f6, #1d4ed8)" }}
+                variants={fadeUp}
+                custom={2}
+                whileTap={{ scale: 0.97 }}
+              >
                 ✅ Confirmar RSVP
               </motion.button>
             </motion.div>
