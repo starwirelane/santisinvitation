@@ -67,9 +67,9 @@ const walletStyles = `
     z-index: 40;
     filter: drop-shadow(0 15px 25px rgba(20,40,20,0.4));
   }
-  .pocket-content {
+ .pocket-content {
     position: absolute;
-    top: 45px;
+    top: 90px;
     width: 100%;
     text-align: center;
     z-index: 50;
