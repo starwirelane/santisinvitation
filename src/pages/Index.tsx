@@ -5,8 +5,8 @@ import santiagoImg from "@/assets/santiago-soccer.png";
 import heroBg from "@/assets/soccer-hero-bg.jpg";
 import fieldTexture from "@/assets/field-texture.jpg";
 
-const SUPABASE_URL = "https://yhvxzbrmzjervjhokcao.supabase.co";
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlodnh6YnJtemplcnZqaG9rY2FvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwMTY0NDcsImV4cCI6MjA5MTU5MjQ0N30.wSbgfeDgexQEiSVZE2Xc2iQfvxf3emEY37VzQYzO3-o";
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
+const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 const saveRsvp = async (attending: boolean) => {
   const name = localStorage.getItem("visitorName") || "Unknown";
