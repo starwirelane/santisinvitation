@@ -424,7 +424,7 @@ const Index = () => {
               >
                 <p className="text-white/80 text-sm font-semibold font-heading">Confirma por mensaje de texto:</p>
                 
-                  href={"sms:209-663-3948?body=" + encodeURIComponent("Hola! Soy " + visitorName + ", confirmo mi asistencia a la graduacion de Santiago el 13 de Junio!")}
+                  href={"sms:209-663-3948?body=Hola%21%20Soy%20" + encodeURIComponent(visitorName) + "%2C%20confirmo%20mi%20asistencia%20a%20la%20graduacion%20de%20Santiago%20el%2013%20de%20Junio%21"}
                   className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 rounded-full font-heading font-bold text-sm text-white"
                   style={{ background: "linear-gradient(135deg, #22c55e, #16a34a)", boxShadow: "0 0 20px rgba(34,197,94,0.4)" }}
                 >
