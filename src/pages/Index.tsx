@@ -158,7 +158,9 @@ const DeclineScreen = ({ onBack }: { onBack: () => void }) => {
   return (
     <motion.div
       className="min-h-screen relative flex flex-col items-center justify-center px-6 text-center overflow-hidden"
-      initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6 }}
       style={{ background: "linear-gradient(135deg, #0a0a1a 0%, #0d1b2a 50%, #0a0a1a 100%)" }}
     >
       <GlowOrbs colors={["rgba(239,68,68,0.12)", "rgba(99,102,241,0.1)", "rgba(59,130,246,0.08)"]} />
@@ -189,10 +191,7 @@ const DeclineScreen = ({ onBack }: { onBack: () => void }) => {
         <h2 className="font-heading text-3xl font-extrabold text-white">Que lastima!</h2>
         <p className="text-white/60 text-lg max-w-xs">Te vamos a extranar, pero esperamos que tengas un dia increible</p>
         <motion.p className="text-white/40 text-sm" animate={{ opacity: [0.4, 1, 0.4] }} transition={{ duration: 2, repeat: Infinity }}>Que te vaya super bien!</motion.p>
-        <button
-          onClick={onBack}
-          className="inline-block mt-4 px-8 py-3 rounded-full border border-white/20 text-white/60 font-heading text-sm hover:bg-white/10 transition-all duration-300"
-        >
+        <button onClick={onBack} className="inline-block mt-4 px-8 py-3 rounded-full border border-white/20 text-white/60 font-heading text-sm hover:bg-white/10 transition-all duration-300">
           Volver al inicio
         </button>
       </motion.div>
@@ -224,7 +223,6 @@ const RsvpChoice = ({ onAccept, onDecline }: { onAccept: () => void; onDecline: 
   const { timeLeft, expired } = useCountdown();
   const visitorName = localStorage.getItem("visitorName") || "";
   const firstName = visitorName.split(" ")[0];
-
   return (
     <motion.div
       className="w-full text-center space-y-8"
@@ -234,7 +232,7 @@ const RsvpChoice = ({ onAccept, onDecline }: { onAccept: () => void; onDecline: 
     >
       <div className="space-y-2">
         <h3 className="font-heading text-3xl font-extrabold text-white">
-          {firstName ? `Hola ${firstName}! Vas a venir?` : "Vas a venir?"}
+          {firstName ? "Hola " + firstName + "! Vas a venir?" : "Vas a venir?"}
         </h3>
         <p className="text-white/50 text-sm">Confirma tu asistencia antes del 7 de junio</p>
       </div>
@@ -313,26 +311,42 @@ const Index = () => {
               </motion.p>
               <motion.h1
                 className="font-heading text-5xl sm:text-6xl md:text-7xl font-extrabold leading-none text-white"
-                initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.3, duration: 0.8 }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.3, duration: 0.8 }}
               >
-                {firstName ? `Hola ${firstName}!` : "HAS SIDO"}
+                {firstName ? "Hola " + firstName + "!" : "HAS SIDO"}
               </motion.h1>
               <motion.h1
                 className="font-heading text-6xl sm:text-7xl md:text-8xl font-extrabold leading-none text-primary mt-1"
-                initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.5, duration: 0.8 }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
               >
                 INVITADO!
               </motion.h1>
-              <motion.p className="mt-6 text-white/70 text-lg sm:text-xl font-heading font-light max-w-xs text-center" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.6 }}>
+              <motion.p
+                className="mt-6 text-white/70 text-lg sm:text-xl font-heading font-light max-w-xs text-center"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8, duration: 0.6 }}
+              >
                 A la Graduacion de Santiago
               </motion.p>
-              <motion.p className="mt-2 text-white/40 text-base" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1, duration: 0.6 }}>
+              <motion.p
+                className="mt-2 text-white/40 text-base"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1, duration: 0.6 }}
+              >
                 Sabado, 13 de Junio · 3:30 PM
               </motion.p>
               <motion.button
                 onClick={() => setStep(1)}
                 className="mt-10 px-12 py-4 rounded-full font-heading font-bold text-base bg-primary text-primary-foreground"
-                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.4, duration: 0.6 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.4, duration: 0.6 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
               >
@@ -370,7 +384,8 @@ const Index = () => {
               <motion.div
                 className="text-center px-6 py-5 rounded-2xl w-full"
                 style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", backdropFilter: "blur(16px)" }}
-                variants={fadeUp} custom={1}
+                variants={fadeUp}
+                custom={1}
               >
                 <p className="text-base leading-relaxed text-white/60">
                   Pongase su camiseta de futbol favorita y acompananos a celebrar un nuevo capitulo en la vida de Santiago
@@ -380,7 +395,8 @@ const Index = () => {
                 onClick={() => setStep(2)}
                 className="w-full px-12 py-4 rounded-full font-heading font-bold text-base text-white transition-all duration-300"
                 style={{ background: "linear-gradient(135deg, #3b82f6, #1d4ed8)", boxShadow: "0 0 25px rgba(59,130,246,0.4)" }}
-                variants={fadeUp} custom={2}
+                variants={fadeUp}
+                custom={2}
                 whileHover={{ scale: 1.03, boxShadow: "0 0 45px rgba(59,130,246,0.6)" }}
                 whileTap={{ scale: 0.97 }}
               >
@@ -409,19 +425,18 @@ const Index = () => {
             <Confetti />
             <motion.div
               className="relative z-10 max-w-md w-full mx-auto text-center space-y-8"
-              initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
             >
               <motion.p className="text-6xl" animate={{ rotate: [0, -15, 15, -15, 0], scale: [1, 1.4, 1] }} transition={{ duration: 0.8, repeat: 2 }}>🎉</motion.p>
               <div>
                 <h2 className="font-heading text-3xl font-extrabold text-white">
-                  {firstName ? `Nos vemos ahi ${firstName}!` : "Nos vemos ahi!"}
+                  {firstName ? "Nos vemos ahi " + firstName + "!" : "Nos vemos ahi!"}
                 </h2>
                 <p className="text-white/50 text-sm mt-2">Santiago esta emocionado de verte</p>
               </div>
-              <div
-                className="rounded-2xl p-6 space-y-3 text-left"
-                style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)", backdropFilter: "blur(16px)" }}
-              >
+              <div className="rounded-2xl p-6 space-y-3 text-left" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)", backdropFilter: "blur(16px)" }}>
                 <p className="text-white/80 text-sm font-semibold font-heading">Confirma por mensaje de texto:</p>
                 
                   href="sms:209-663-3948"
