@@ -8,6 +8,8 @@ import fieldTexture from "@/assets/field-texture.jpg";
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
+console.log(import.meta.env.VITE_SUPABASE_URL);
+
 const saveRsvp = async (attending: boolean) => {
   const name = localStorage.getItem("visitorName") || "Unknown";
   await fetch(`${SUPABASE_URL}/rest/v1/visitors?name=eq.${encodeURIComponent(name)}`, {
