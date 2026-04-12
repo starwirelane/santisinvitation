@@ -389,7 +389,7 @@ const Index = () => {
               <div className="rounded-2xl p-6 space-y-3 text-left" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)", backdropFilter: "blur(16px)" }}>
                 <p className="text-white/80 text-sm font-semibold font-heading">📱 Confirma por mensaje de texto:</p>
                 
-                  href={`sms:209-663-3948&body=Hola! Soy ${encodeURIComponent(visitorName)}, confirmo mi asistencia a la graduacion de Santiago el 13 de Junio!`}
+                 href={`sms:209-663-3948?body=Hola! Soy ${encodeURIComponent(visitorName)}, confirmo mi asistencia a la graduacion de Santiago el 13 de Junio!`}
                   className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 rounded-full font-heading font-bold text-sm text-white"
                   style={{ background: "linear-gradient(135deg, #22c55e, #16a34a)", boxShadow: "0 0 20px rgba(34,197,94,0.4)" }}
                 >
