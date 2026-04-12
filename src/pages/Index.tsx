@@ -449,7 +449,7 @@ const Index = () => {
   </p>
 
   <a
-    href="sms:209-663-3948"
+    href={"sms:209-663-3948" + (navigator.userAgent.includes("Android") ? "?body=" : "&body=") + encodeURIComponent("Hola! Soy " + visitorName + ", confirmo mi asistencia a la graduacion de Santiago el 13 de Junio!")}
     className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 rounded-full font-heading font-bold text-sm text-white"
     style={{
       background: "linear-gradient(135deg, #22c55e, #16a34a)",
