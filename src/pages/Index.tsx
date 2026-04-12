@@ -437,7 +437,7 @@ const Index = () => {
                 <p className="text-white/50 text-sm mt-2">Santiago esta emocionado de verte</p>
               </div>
               <div className="rounded-2xl p-6 space-y-3 text-left" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)", backdropFilter: "blur(16px)" }}>
-                <p className="text-white/80 text-sm font-semibold font-heading">Confirma por mensaje de texto:</p>
+               <p className="text-white/80 text-sm font-semibold font-heading">Confirma por mensaje de texto:</p>
                 
                   href="sms:209-663-3948"
                   className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 rounded-full font-heading font-bold text-sm text-white"
