@@ -6,16 +6,21 @@ const SUPABASE_URL = "https://yhvxzbrmzjervjhokcao.supabase.co";
 const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlodnh6YnJtemplcnZqaG9rY2FvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwMTY0NDcsImV4cCI6MjA5MTU5MjQ0N30.wSbgfeDgexQEiSVZE2Xc2iQfvxf3emEY37VzQYzO3-o";
 
 const Welcome = () => {
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
-    if (!name.trim()) { setError("Por favor escribe tu nombre"); return; }
+    if (!firstName.trim() || !lastName.trim()) {
+      setError("Por favor escribe tu nombre completo");
+      return;
+    }
     setLoading(true);
     try {
       const device = navigator.userAgent.includes("Mobile") ? "Mobile" : "Desktop";
+      const fullName = `${firstName.trim()} ${lastName.trim()}`;
       await fetch(`${SUPABASE_URL}/rest/v1/visitors`, {
         method: "POST",
         headers: {
@@ -23,8 +28,9 @@ const Welcome = () => {
           "apikey": SUPABASE_KEY,
           "Authorization": `Bearer ${SUPABASE_KEY}`,
         },
-        body: JSON.stringify({ name: name.trim(), device }),
+        body: JSON.stringify({ name: fullName, device }),
       });
+      localStorage.setItem("visitorName", fullName);
       navigate("/invite");
     } catch {
       setError("Algo salio mal, intenta de nuevo");
@@ -37,7 +43,6 @@ const Welcome = () => {
       className="min-h-screen relative flex flex-col items-center justify-center px-6 text-center overflow-hidden"
       style={{ background: "linear-gradient(135deg, #0a0a1a 0%, #0d1b2a 50%, #0a0a1a 100%)" }}
     >
-      {/* Glow orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[
           { color: "rgba(59,130,246,0.15)", top: "-10%", left: "-10%" },
@@ -53,8 +58,6 @@ const Welcome = () => {
           />
         ))}
       </div>
-
-      {/* Floating particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {["⚽","✨","⭐","💫","🎓","⚽","✨"].map((p, i) => (
           <motion.div
@@ -90,9 +93,17 @@ const Welcome = () => {
         <div className="space-y-4">
           <input
             type="text"
-            placeholder="Tu nombre..."
-            value={name}
-            onChange={(e) => { setName(e.target.value); setError(""); }}
+            placeholder="Nombre..."
+            value={firstName}
+            onChange={(e) => { setFirstName(e.target.value); setError(""); }}
+            className="w-full px-6 py-4 rounded-2xl font-heading text-base text-white placeholder-white/30 outline-none"
+            style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.15)", backdropFilter: "blur(12px)" }}
+          />
+          <input
+            type="text"
+            placeholder="Apellido..."
+            value={lastName}
+            onChange={(e) => { setLastName(e.target.value); setError(""); }}
             onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
             className="w-full px-6 py-4 rounded-2xl font-heading text-base text-white placeholder-white/30 outline-none"
             style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.15)", backdropFilter: "blur(12px)" }}
@@ -101,7 +112,7 @@ const Welcome = () => {
           <motion.button
             onClick={handleSubmit}
             disabled={loading}
-            className="w-full px-8 py-4 rounded-2xl font-heading font-extrabold text-base text-white transition-all duration-300"
+            className="w-full px-8 py-4 rounded-2xl font-heading font-extrabold text-base text-white"
             style={{ background: "linear-gradient(135deg, #3b82f6, #1d4ed8)", boxShadow: "0 0 25px rgba(59,130,246,0.4)" }}
             whileHover={{ scale: 1.03, boxShadow: "0 0 45px rgba(59,130,246,0.6)" }}
             whileTap={{ scale: 0.97 }}
@@ -109,7 +120,6 @@ const Welcome = () => {
             {loading ? "Abriendo..." : "Abrir invitacion →"}
           </motion.button>
         </div>
-
         <p className="text-white/20 text-xs">Graduacion de Santiago · Junio 2026</p>
       </motion.div>
     </div>
