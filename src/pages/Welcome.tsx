@@ -137,7 +137,7 @@ const Welcome = () => {
   return (
     <div className="welcome-root">
       <style>{styles}</style>
-      <video className="video-bg" src="/hero.mp4" autoPlay muted loop playsInline />
+      <video className="video-bg" src="./hero.mp4" autoPlay muted loop playsInline />
       <div className="video-overlay" />
       <div className="video-vignette" />
       <div className="orb orb1" />
