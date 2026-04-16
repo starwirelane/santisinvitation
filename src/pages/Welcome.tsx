@@ -19,10 +19,10 @@ const styles = `
   .ball-float { position:fixed; pointer-events:none; animation:floatBall linear infinite; z-index:2; opacity:0; }
   @keyframes floatBall { 0%{transform:translateY(110vh) rotate(0deg);opacity:0;} 8%{opacity:0.25;} 92%{opacity:0.1;} 100%{transform:translateY(-10vh) rotate(360deg);opacity:0;} }
   .w-container { position:relative; z-index:3; width:100%; max-width:500px; padding:2rem; }
-  .scorebar { display:flex; align-items:stretch; justify-content:center; margin-bottom:1.6rem; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,0.1); background:rgba(0,0,0,0.55); backdrop-filter:blur(16px); animation:fadeDown 0.6s cubic-bezier(0.22,1,0.36,1) 0.1s both; }
+  .scorebar { display:flex; align-items:stretch; justify-content:center; margin-bottom:1.6rem; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,0.08); background:rgba(0,0,0,0.25); backdrop-filter:blur(20px); animation:fadeDown 0.6s cubic-bezier(0.22,1,0.36,1) 0.1s both; }
   .score-team { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:10px 12px; gap:2px; }
-  .score-team.barca { background:linear-gradient(135deg,rgba(163,0,66,0.3),rgba(0,79,168,0.3)); }
-  .score-team.opp { background:rgba(255,255,255,0.04); }
+  .score-team.barca { background:linear-gradient(135deg,rgba(163,0,66,0.18),rgba(0,79,168,0.18)); }
+  .score-team.opp { background:rgba(255,255,255,0.03); }
   .team-name { font-size:10px; text-transform:uppercase; letter-spacing:0.12em; color:rgba(255,255,255,0.45); font-weight:500; }
   .team-score { font-family:'Bebas Neue',sans-serif; font-size:2.2rem; line-height:1; color:#fff; letter-spacing:0.05em; }
   .score-team.barca .team-score { color:#ffd700; text-shadow:0 0 18px rgba(255,215,0,0.4); }
