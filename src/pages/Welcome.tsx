@@ -104,7 +104,7 @@ const ScoreBar = () => {
     const fetchMatch = async () => {
       try {
         const res = await fetch(
-          "https://free-api-live-football-data.p.rapidapi.com/football-get-all-fixtures-by-team-id?teamid=1161&seasonid=23927",
+          "https://free-api-live-football-data.p.rapidapi.com/football-get-matches-by-team-by-id?teamid=529",
           {
             headers: {
               "x-rapidapi-key": RAPID_KEY,
