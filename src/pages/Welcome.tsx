@@ -123,23 +123,25 @@ const ScoreBar = () => {
         const data = await res.json();
         const fixtures = data?.response || [];
 
-        const barcaMatches = fixtures.filter((f: any) =>
-          f.teams?.home?.name?.toLowerCase().includes("barcelona") ||
-          f.teams?.away?.name?.toLowerCase().includes("barcelona")
+      const allMatches = data?.response?.matches || [];
+
+        const barcaMatches = allMatches.filter((f: any) =>
+          f.home?.name?.toLowerCase().includes("barcelona") ||
+          f.away?.name?.toLowerCase().includes("barcelona")
         );
 
         const finished = barcaMatches
-          .filter((f: any) => f.status?.toLowerCase().includes("finished") || f.status?.toLowerCase().includes("ft"))
-          .sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime())[0];
+          .filter((f: any) => f.status?.finished === true)
+          .sort((a: any, b: any) => new Date(b.status?.utcTime).getTime() - new Date(a.status?.utcTime).getTime())[0];
 
         if (finished) {
-          const d = new Date(finished.date);
-          const barcaIsHome = finished.teams?.home?.name?.toLowerCase().includes("barcelona");
+          const d = new Date(finished.status?.utcTime);
+          const barcaIsHome = finished.home?.name?.toLowerCase().includes("barcelona");
           setMatch({
-            homeTeam: finished.teams?.home?.name || "FC Barcelona",
-            awayTeam: finished.teams?.away?.name || "Opponent",
-            homeScore: finished.goals?.home ?? finished.score?.home ?? null,
-            awayScore: finished.goals?.away ?? finished.score?.away ?? null,
+            homeTeam: finished.home?.name || "FC Barcelona",
+            awayTeam: finished.away?.name || "Opponent",
+            homeScore: barcaIsHome ? finished.home?.score : finished.away?.score,
+            awayScore: barcaIsHome ? finished.away?.score : finished.home?.score,
             status: "finished",
             date: d.toLocaleDateString("es-ES", { day: "numeric", month: "short" }),
           });
