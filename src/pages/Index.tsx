@@ -2,20 +2,19 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import santiagoImg from "@/assets/santiago-soccer.png";
-import heroBg from "@/assets/soccer-hero-bg.jpg";
 import fieldTexture from "@/assets/field-texture.jpg";
 
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
-const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const SUPABASE_URL = "https://yhvxzbrmzjervjhokcao.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlodnh6YnJtemplcnZqaG9rY2FvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwMTY0NDcsImV4cCI6MjA5MTU5MjQ0N30.wSbgfeDgexQEiSVZE2Xc2iQfvxf3emEY37VzQYzO3-o";
 
 const saveRsvp = async (attending: boolean) => {
   const name = localStorage.getItem("visitorName") || "Unknown";
-  await fetch(`${SUPABASE_URL}/rest/v1/visitors?name=eq.${encodeURIComponent(name)}`, {
+  await fetch(SUPABASE_URL + "/rest/v1/visitors?name=eq." + encodeURIComponent(name), {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
       "apikey": SUPABASE_KEY,
-      "Authorization": `Bearer ${SUPABASE_KEY}`,
+      "Authorization": "Bearer " + SUPABASE_KEY,
       "Prefer": "return=minimal",
     },
     body: JSON.stringify({ attending: attending ? "Yes" : "No" }),
@@ -295,14 +294,7 @@ const Index = () => {
 
         {step === 0 && (
           <motion.section key="hero" {...fade} className="min-h-screen relative flex flex-col items-center justify-center px-6 text-center overflow-hidden">
-            <video
-              className="absolute inset-0 w-full h-full object-cover"
-              src="/invite.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-            />
+            <video className="absolute inset-0 w-full h-full object-cover" src="/invite.mp4" autoPlay muted loop playsInline />
             <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.7) 100%)" }} />
             <FloatingParticles emojis={["⚽","✨","⭐","💫"]} count={8} />
             <HeroCountdown />
@@ -310,47 +302,19 @@ const Index = () => {
               <motion.p className="text-white/50 text-xs font-heading tracking-[0.3em] uppercase mb-8" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2, duration: 0.8 }}>
                 Invitacion especial
               </motion.p>
-              <motion.h1
-                className="font-heading text-5xl sm:text-6xl md:text-7xl font-extrabold leading-none text-white"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.3, duration: 0.8 }}
-              >
+              <motion.h1 className="font-heading text-5xl sm:text-6xl md:text-7xl font-extrabold leading-none text-white" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.3, duration: 0.8 }}>
                 {firstName ? "Hola " + firstName + "!" : "HAS SIDO"}
               </motion.h1>
-              <motion.h1
-                className="font-heading text-6xl sm:text-7xl md:text-8xl font-extrabold leading-none text-primary mt-1"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.5, duration: 0.8 }}
-              >
+              <motion.h1 className="font-heading text-6xl sm:text-7xl md:text-8xl font-extrabold leading-none text-primary mt-1" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.5, duration: 0.8 }}>
                 INVITADO!
               </motion.h1>
-              <motion.p
-                className="mt-6 text-white/70 text-lg sm:text-xl font-heading font-light max-w-xs text-center"
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8, duration: 0.6 }}
-              >
+              <motion.p className="mt-6 text-white/70 text-lg sm:text-xl font-heading font-light max-w-xs text-center" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.6 }}>
                 A la Graduacion de Santiago
               </motion.p>
-              <motion.p
-                className="mt-2 text-white/40 text-base"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1, duration: 0.6 }}
-              >
+              <motion.p className="mt-2 text-white/40 text-base" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1, duration: 0.6 }}>
                 Sabado, 13 de Junio · 3:30 PM
               </motion.p>
-              <motion.button
-                onClick={() => setStep(1)}
-                className="mt-10 px-12 py-4 rounded-full font-heading font-bold text-base bg-primary text-primary-foreground"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.4, duration: 0.6 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.97 }}
-              >
+              <motion.button onClick={() => setStep(1)} className="mt-10 px-12 py-4 rounded-full font-heading font-bold text-base bg-primary text-primary-foreground" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.4, duration: 0.6 }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
                 Abrir invitacion
               </motion.button>
             </div>
@@ -384,25 +348,12 @@ const Index = () => {
                   </div>
                 </div>
               </motion.div>
-              <motion.div
-                className="text-center px-6 py-5 rounded-2xl w-full"
-                style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", backdropFilter: "blur(16px)" }}
-                variants={fadeUp}
-                custom={1}
-              >
+              <motion.div className="text-center px-6 py-5 rounded-2xl w-full" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", backdropFilter: "blur(16px)" }} variants={fadeUp} custom={1}>
                 <p className="text-base leading-relaxed text-white/60">
                   Pongase su camiseta de futbol favorita y acompananos a celebrar un nuevo capitulo en la vida de Santiago
                 </p>
               </motion.div>
-              <motion.button
-                onClick={() => setStep(2)}
-                className="w-full px-12 py-4 rounded-full font-heading font-bold text-base text-white transition-all duration-300"
-                style={{ background: "linear-gradient(135deg, #3b82f6, #1d4ed8)", boxShadow: "0 0 25px rgba(59,130,246,0.4)" }}
-                variants={fadeUp}
-                custom={2}
-                whileHover={{ scale: 1.03, boxShadow: "0 0 45px rgba(59,130,246,0.6)" }}
-                whileTap={{ scale: 0.97 }}
-              >
+              <motion.button onClick={() => setStep(2)} className="w-full px-12 py-4 rounded-full font-heading font-bold text-base text-white transition-all duration-300" style={{ background: "linear-gradient(135deg, #3b82f6, #1d4ed8)", boxShadow: "0 0 25px rgba(59,130,246,0.4)" }} variants={fadeUp} custom={2} whileHover={{ scale: 1.03, boxShadow: "0 0 45px rgba(59,130,246,0.6)" }} whileTap={{ scale: 0.97 }}>
                 Confirmar RSVP
               </motion.button>
             </motion.div>
@@ -426,12 +377,7 @@ const Index = () => {
           <motion.section key="confirmed" {...fade} className="min-h-screen relative px-6 py-20 flex items-center justify-center overflow-hidden" style={{ background: "linear-gradient(135deg, #0a0a1a 0%, #0d1b2a 50%, #0a0a1a 100%)" }}>
             <GlowOrbs colors={["rgba(245,197,24,0.15)", "rgba(34,197,94,0.12)", "rgba(245,197,24,0.08)"]} />
             <Confetti />
-            <motion.div
-              className="relative z-10 max-w-md w-full mx-auto text-center space-y-8"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
+            <motion.div className="relative z-10 max-w-md w-full mx-auto text-center space-y-8" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
               <motion.p className="text-6xl" animate={{ rotate: [0, -15, 15, -15, 0], scale: [1, 1.4, 1] }} transition={{ duration: 0.8, repeat: 2 }}>🎉</motion.p>
               <div>
                 <h2 className="font-heading text-3xl font-extrabold text-white">
@@ -439,38 +385,18 @@ const Index = () => {
                 </h2>
                 <p className="text-white/50 text-sm mt-2">Santiago esta emocionado de verte</p>
               </div>
-              <div
-  className="rounded-2xl p-6 space-y-3 text-left"
-  style={{
-    background: "rgba(255,255,255,0.05)",
-    border: "1px solid rgba(255,255,255,0.12)",
-    backdropFilter: "blur(16px)",
-  }}
->
-  <p className="text-white/80 text-sm font-semibold font-heading">
-    Confirma por mensaje de texto:
-  </p>
-
-  <a
-    href={"sms:209-663-3948" + (navigator.userAgent.includes("Android") ? "?body=" : "&body=") + encodeURIComponent("Hola! Soy " + visitorName + ", confirmo mi asistencia a la graduacion de Santiago el 13 de Junio!")}
-    className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 rounded-full font-heading font-bold text-sm text-white"
-    style={{
-      background: "linear-gradient(135deg, #22c55e, #16a34a)",
-      boxShadow: "0 0 20px rgba(34,197,94,0.4)",
-    }}
-  >
-    Enviar texto al 209-663-3948
-  </a>
-
-  <p className="text-white/40 text-xs text-center">
-    Confirma con Esmeralda Luvianos antes del 7 de junio
-  </p>
-</div>
-              <Link
-                to="/gifts"
-                className="inline-block w-full px-8 py-4 rounded-2xl font-heading font-semibold text-base transition-all duration-300"
-                style={{ background: "linear-gradient(135deg, #f5c518, #d4a017)", color: "#0a0a0a", boxShadow: "0 0 25px rgba(245,197,24,0.35)" }}
-              >
+              <div className="rounded-2xl p-6 space-y-3 text-left" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)", backdropFilter: "blur(16px)" }}>
+                <p className="text-white/80 text-sm font-semibold font-heading">Confirma por mensaje de texto:</p>
+                <button
+                  onClick={() => { window.location.href = "sms:209-663-3948" + (navigator.userAgent.includes("Android") ? "?body=" : "&body=") + encodeURIComponent("Hola! Soy " + visitorName + ", confirmo mi asistencia a la graduacion de Santiago el 13 de Junio!"); }}
+                  className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 rounded-full font-heading font-bold text-sm text-white"
+                  style={{ background: "linear-gradient(135deg, #22c55e, #16a34a)", boxShadow: "0 0 20px rgba(34,197,94,0.4)" }}
+                >
+                  Enviar texto al 209-663-3948
+                </button>
+                <p className="text-white/40 text-xs text-center">Confirma con Esmeralda Luvianos antes del 7 de junio</p>
+              </div>
+              <Link to="/gifts" className="inline-block w-full px-8 py-4 rounded-2xl font-heading font-semibold text-base transition-all duration-300" style={{ background: "linear-gradient(135deg, #f5c518, #d4a017)", color: "#0a0a0a", boxShadow: "0 0 25px rgba(245,197,24,0.35)" }}>
                 Ver ideas de regalo
               </Link>
               <button onClick={() => setStep(0)} className="text-xs text-white/30 underline">
