@@ -328,13 +328,7 @@ const Index = () => {
             <motion.div className="relative z-10 max-w-md w-full mx-auto space-y-8" initial="hidden" animate="visible">
               <motion.div className="flex flex-col sm:flex-row items-center gap-8 w-full" variants={fadeUp} custom={0}>
                 <div className="flex-shrink-0 relative">
-                  <motion.div
-                    className="absolute inset-0 rounded-full"
-                    style={{ background: "rgba(59,130,246,0.4)", filter: "blur(16px)" }}
-                    animate={{ opacity: [0.4, 0.9, 0.4], scale: [0.9, 1.15, 0.9] }}
-                    transition={{ duration: 3, repeat: Infinity }}
-                  />
-                  <img src={santiagoImg} alt="Santiago" className="relative w-44 h-44 object-cover rounded-full shadow-xl" style={{ border: "3px solid rgba(99,102,241,0.5)" }} />
+                  <img src={santiagoImg} alt="Santiago" className="relative w-44 h-44 object-cover rounded-full shadow-xl" style={{ border: "3px solid rgba(255,255,255,0.4)" }} />
                 </div>
                 <div className="text-center sm:text-left space-y-3">
                   <p className="text-white/40 text-xs uppercase tracking-widest">Estan invitados a la</p>
