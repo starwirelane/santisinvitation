@@ -21,17 +21,17 @@ const styles = `
   .w-container { position:relative; z-index:3; width:100%; max-width:500px; padding:2rem; }
   .scorebar { display:flex; align-items:stretch; justify-content:center; margin-bottom:1.6rem; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,0.08); background:rgba(0,0,0,0.25); backdrop-filter:blur(20px); animation:fadeDown 0.6s cubic-bezier(0.22,1,0.36,1) 0.1s both; }
   .score-team { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:10px 12px; gap:2px; }
-  .score-team.barca { background:linear-gradient(135deg,rgba(163,0,66,0.18),rgba(0,79,168,0.18)); }
+  .score-team.barca { background:linear-gradient(135deg,rgba(165,0,68,0.22),rgba(0,77,152,0.22)); }
   .score-team.opp { background:rgba(255,255,255,0.03); }
   .team-name { font-size:10px; text-transform:uppercase; letter-spacing:0.12em; color:rgba(255,255,255,0.45); font-weight:500; }
   .team-score { font-family:'Bebas Neue',sans-serif; font-size:2.2rem; line-height:1; color:#fff; letter-spacing:0.05em; }
-  .score-team.barca .team-score { color:#ffd700; text-shadow:0 0 18px rgba(255,215,0,0.4); }
+  .score-team.barca .team-score { color:#edbb00; text-shadow:0 0 18px rgba(237,187,0,0.4); }
   .score-mid { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:8px 14px; gap:3px; border-left:1px solid rgba(255,255,255,0.07); border-right:1px solid rgba(255,255,255,0.07); }
   .score-status { font-size:9px; text-transform:uppercase; letter-spacing:0.14em; font-weight:600; padding:2px 8px; border-radius:99px; background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.4); }
   .score-vs { font-size:10px; color:rgba(255,255,255,0.25); letter-spacing:0.1em; margin-top:2px; }
   .score-date { font-size:9px; color:rgba(255,255,255,0.25); letter-spacing:0.06em; }
   .w-h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(3rem,12vw,5rem); line-height:0.92; color:#f8f0ff; text-align:center; margin-bottom:0.3rem; letter-spacing:0.03em; animation:fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.24s both; }
-  .w-h1 span { color:#ffd700; text-shadow:0 0 28px rgba(255,215,0,0.45); }
+  .w-h1 span { color:#ffed02; text-shadow:0 0 28px rgba(255,237,2,0.45); }
   .w-sub { text-align:center; font-size:13px; color:rgba(255,255,255,0.5); margin-bottom:2rem; letter-spacing:0.04em; animation:fadeUp 0.6s cubic-bezier(0.22,1,0.36,1) 0.36s both; }
   .w-card { background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.08); border-radius:20px; padding:2rem 1.75rem; backdrop-filter:blur(24px); position:relative; overflow:hidden; animation:cardIn 0.8s cubic-bezier(0.22,1,0.36,1) 0.46s both; }
   .w-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,#a30042 30%,#004fa8 70%,transparent); }
@@ -45,7 +45,7 @@ const styles = `
   .w-field input { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:13px 16px; font-size:16px; font-weight:500; color:#fff; font-family:'DM Sans',sans-serif; outline:none; width:100%; transition:border-color 0.25s,background 0.25s,box-shadow 0.25s; }
   .w-field input::placeholder { color:rgba(255,255,255,0.2); font-weight:400; }
   .w-field input:focus { border-color:rgba(163,0,66,0.7); background:rgba(163,0,66,0.07); box-shadow:0 0 0 4px rgba(163,0,66,0.12); }
-  .w-btn { width:100%; padding:16px; border-radius:12px; border:none; background:linear-gradient(135deg,#a30042 0%,#004fa8 100%); color:#fff; font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:0.12em; cursor:pointer; position:relative; overflow:hidden; transition:transform 0.15s,box-shadow 0.2s; box-shadow:0 4px 28px rgba(163,0,66,0.4); }
+  .w-btn { width:100%; padding:16px; border-radius:12px; border:none; background:linear-gradient(135deg,#a50044 0%,#004d98 100%); color:#fff; font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:0.12em; cursor:pointer; position:relative; overflow:hidden; transition:transform 0.15s,box-shadow 0.2s; box-shadow:0 4px 28px rgba(165,0,68,0.4); }
   .w-btn:hover { transform:translateY(-3px); box-shadow:0 10px 36px rgba(163,0,66,0.55); }
   .w-btn:active { transform:scale(0.97); }
   .btn-inner { display:flex; align-items:center; justify-content:center; gap:10px; }
