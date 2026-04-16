@@ -295,13 +295,14 @@ const Index = () => {
 
         {step === 0 && (
           <motion.section key="hero" {...fade} className="min-h-screen relative flex flex-col items-center justify-center px-6 text-center overflow-hidden">
-            <motion.div
-              className="absolute inset-0"
-              animate={{ scale: [1, 1.08, 1] }}
-              transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <img src={heroBg} alt="" className="w-full h-full object-cover" width={1280} height={1920} />
-            </motion.div>
+            <video
+              className="absolute inset-0 w-full h-full object-cover"
+              src="/invite.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+            />
             <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.7) 100%)" }} />
             <FloatingParticles emojis={["⚽","✨","⭐","💫"]} count={8} />
             <HeroCountdown />
