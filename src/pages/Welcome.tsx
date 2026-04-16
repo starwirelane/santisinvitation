@@ -112,7 +112,7 @@ const ScoreBar = () => {
         }
 
         const res = await fetch(
-          "https://free-api-live-football-data.p.rapidapi.com/football-get-all-matches-by-league?leagueid=302",
+          "https://free-api-live-football-data.p.rapidapi.com/football-get-all-matches-by-league?leagueid=87",
           {
             headers: {
               "x-rapidapi-key": RAPID_KEY,
