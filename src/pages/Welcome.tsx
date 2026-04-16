@@ -11,12 +11,11 @@ const styles = `
   .video-overlay { position:fixed; inset:0; background:linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.7) 100%); z-index:1; pointer-events:none; }
   .video-vignette { position:fixed; inset:0; background:radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.7) 100%); z-index:1; pointer-events:none; }
   .orb { position:fixed; border-radius:50%; filter:blur(90px); opacity:0.15; animation:drift 10s ease-in-out infinite alternate; pointer-events:none; z-index:2; }
-  .orb1 { width:380px; height:380px; background:#a30042; top:-80px; left:-80px; animation-delay:0s; }
-  .orb2 { width:300px; height:300px; background:#004fa8; bottom:-60px; right:-60px; animation-delay:-5s; }
-  .orb3 { width:200px; height:200px; background:#ffd700; bottom:25%; right:10%; animation-delay:-3s; opacity:0.08; }
+  .orb1 { width:380px; height:380px; background:#ffffff; top:-80px; left:-80px; animation-delay:0s; opacity:0.06; }
+  .orb2 { width:300px; height:300px; background:#ffffff; bottom:-60px; right:-60px; animation-delay:-5s; opacity:0.06; }
+  .orb3 { width:200px; height:200px; background:#ffffff; bottom:25%; right:10%; animation-delay:-3s; opacity:0.04; }
   @keyframes drift { 0%{transform:translate(0,0) scale(1);} 100%{transform:translate(25px,20px) scale(1.1);} }
-  .confetti-piece { position:fixed; pointer-events:none; animation:fall linear infinite; z-index:2; border-radius:2px; }
-  @keyframes fall { 0%{transform:translateY(-40px) rotate(0deg);opacity:0;} 10%{opacity:1;} 90%{opacity:0.6;} 100%{transform:translateY(110vh) rotate(720deg);opacity:0;} }
+  .confetti-piece { display:none; }
   .ball-float { position:fixed; pointer-events:none; animation:floatBall linear infinite; z-index:2; opacity:0; }
   @keyframes floatBall { 0%{transform:translateY(110vh) rotate(0deg);opacity:0;} 8%{opacity:0.25;} 92%{opacity:0.1;} 100%{transform:translateY(-10vh) rotate(360deg);opacity:0;} }
   .w-container { position:relative; z-index:3; width:100%; max-width:500px; padding:2rem; }
@@ -36,7 +35,7 @@ const styles = `
   .w-sub { text-align:center; font-size:13px; color:rgba(255,255,255,0.5); margin-bottom:2rem; letter-spacing:0.04em; animation:fadeUp 0.6s cubic-bezier(0.22,1,0.36,1) 0.36s both; }
   .w-card { background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.08); border-radius:20px; padding:2rem 1.75rem; backdrop-filter:blur(24px); position:relative; overflow:hidden; animation:cardIn 0.8s cubic-bezier(0.22,1,0.36,1) 0.46s both; }
   .w-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,#a30042 30%,#004fa8 70%,transparent); }
-  .jersey-deco { position:absolute; top:-14px; right:14px; font-family:'Bebas Neue',sans-serif; font-size:100px; color:rgba(255,255,255,0.04); line-height:1; pointer-events:none; user-select:none; }
+  .jersey-deco { display:none; }
   @keyframes cardIn { from{opacity:0;transform:translateY(28px) scale(0.97);} to{opacity:1;transform:translateY(0) scale(1);} }
   @keyframes fadeUp { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
   @keyframes fadeDown { from{opacity:0;transform:translateY(-16px);} to{opacity:1;transform:translateY(0);} }
