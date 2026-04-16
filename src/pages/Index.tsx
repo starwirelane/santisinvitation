@@ -359,7 +359,7 @@ const Index = () => {
 
         {step === 1 && (
           <motion.section key="details" {...fade} className="min-h-screen relative px-6 py-20 flex items-center justify-center overflow-hidden">
-            <video className="absolute inset-0 w-full h-full object-cover" src="/details.mp4" autoPlay muted loop playsInline />
+            <video className="absolute inset-0 w-full h-full object-cover" src="/detail.mp4" autoPlay muted loop playsInline />
             <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.7) 100%)" }} />
             <GlowOrbs colors={["rgba(59,130,246,0.18)", "rgba(99,102,241,0.14)", "rgba(59,130,246,0.1)"]} />
             <FloatingParticles emojis={["⚽","🌟","✨","🎓","💫","⭐"]} count={12} />
