@@ -6,18 +6,20 @@ const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap');
-  .welcome-root { min-height:100vh; background:#06010f; font-family:'DM Sans',sans-serif; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative; }
-  .welcome-root::before { content:''; position:fixed; inset:0; background-image:radial-gradient(ellipse 70% 50% at 50% 55%,rgba(163,0,66,0.09) 0%,transparent 70%),repeating-linear-gradient(0deg,transparent,transparent 59px,rgba(255,255,255,0.02) 59px,rgba(255,255,255,0.02) 60px),repeating-linear-gradient(90deg,transparent,transparent 59px,rgba(255,255,255,0.02) 59px,rgba(255,255,255,0.02) 60px); pointer-events:none; z-index:0; }
-  .orb { position:fixed; border-radius:50%; filter:blur(90px); opacity:0.2; animation:drift 10s ease-in-out infinite alternate; pointer-events:none; z-index:0; }
+  .welcome-root { min-height:100vh; font-family:'DM Sans',sans-serif; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative; }
+  .video-bg { position:fixed; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
+  .video-overlay { position:fixed; inset:0; background:linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.7) 100%); z-index:1; pointer-events:none; }
+  .video-vignette { position:fixed; inset:0; background:radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.7) 100%); z-index:1; pointer-events:none; }
+  .orb { position:fixed; border-radius:50%; filter:blur(90px); opacity:0.15; animation:drift 10s ease-in-out infinite alternate; pointer-events:none; z-index:2; }
   .orb1 { width:380px; height:380px; background:#a30042; top:-80px; left:-80px; animation-delay:0s; }
   .orb2 { width:300px; height:300px; background:#004fa8; bottom:-60px; right:-60px; animation-delay:-5s; }
-  .orb3 { width:200px; height:200px; background:#ffd700; bottom:25%; right:10%; animation-delay:-3s; opacity:0.1; }
+  .orb3 { width:200px; height:200px; background:#ffd700; bottom:25%; right:10%; animation-delay:-3s; opacity:0.08; }
   @keyframes drift { 0%{transform:translate(0,0) scale(1);} 100%{transform:translate(25px,20px) scale(1.1);} }
-  .confetti-piece { position:fixed; pointer-events:none; animation:fall linear infinite; z-index:0; border-radius:2px; }
+  .confetti-piece { position:fixed; pointer-events:none; animation:fall linear infinite; z-index:2; border-radius:2px; }
   @keyframes fall { 0%{transform:translateY(-40px) rotate(0deg);opacity:0;} 10%{opacity:1;} 90%{opacity:0.6;} 100%{transform:translateY(110vh) rotate(720deg);opacity:0;} }
-  .ball-float { position:fixed; pointer-events:none; animation:floatBall linear infinite; z-index:0; opacity:0; }
-  @keyframes floatBall { 0%{transform:translateY(110vh) rotate(0deg);opacity:0;} 8%{opacity:0.2;} 92%{opacity:0.1;} 100%{transform:translateY(-10vh) rotate(360deg);opacity:0;} }
-  .w-container { position:relative; z-index:1; width:100%; max-width:500px; padding:2rem; }
+  .ball-float { position:fixed; pointer-events:none; animation:floatBall linear infinite; z-index:2; opacity:0; }
+  @keyframes floatBall { 0%{transform:translateY(110vh) rotate(0deg);opacity:0;} 8%{opacity:0.25;} 92%{opacity:0.1;} 100%{transform:translateY(-10vh) rotate(360deg);opacity:0;} }
+  .w-container { position:relative; z-index:3; width:100%; max-width:500px; padding:2rem; }
   .scorebar { display:flex; align-items:stretch; justify-content:center; margin-bottom:1.6rem; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,0.1); background:rgba(0,0,0,0.55); backdrop-filter:blur(16px); animation:fadeDown 0.6s cubic-bezier(0.22,1,0.36,1) 0.1s both; }
   .score-team { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:10px 12px; gap:2px; }
   .score-team.barca { background:linear-gradient(135deg,rgba(163,0,66,0.3),rgba(0,79,168,0.3)); }
@@ -31,7 +33,7 @@ const styles = `
   .score-date { font-size:9px; color:rgba(255,255,255,0.25); letter-spacing:0.06em; }
   .w-h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(3rem,12vw,5rem); line-height:0.92; color:#f8f0ff; text-align:center; margin-bottom:0.3rem; letter-spacing:0.03em; animation:fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.24s both; }
   .w-h1 span { color:#ffd700; text-shadow:0 0 28px rgba(255,215,0,0.45); }
-  .w-sub { text-align:center; font-size:13px; color:rgba(255,255,255,0.35); margin-bottom:2rem; letter-spacing:0.04em; animation:fadeUp 0.6s cubic-bezier(0.22,1,0.36,1) 0.36s both; }
+  .w-sub { text-align:center; font-size:13px; color:rgba(255,255,255,0.5); margin-bottom:2rem; letter-spacing:0.04em; animation:fadeUp 0.6s cubic-bezier(0.22,1,0.36,1) 0.36s both; }
   .w-card { background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.08); border-radius:20px; padding:2rem 1.75rem; backdrop-filter:blur(24px); position:relative; overflow:hidden; animation:cardIn 0.8s cubic-bezier(0.22,1,0.36,1) 0.46s both; }
   .w-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,#a30042 30%,#004fa8 70%,transparent); }
   .jersey-deco { position:absolute; top:-14px; right:14px; font-family:'Bebas Neue',sans-serif; font-size:100px; color:rgba(255,255,255,0.04); line-height:1; pointer-events:none; user-select:none; }
@@ -48,8 +50,7 @@ const styles = `
   .w-btn:hover { transform:translateY(-3px); box-shadow:0 10px 36px rgba(163,0,66,0.55); }
   .w-btn:active { transform:scale(0.97); }
   .btn-inner { display:flex; align-items:center; justify-content:center; gap:10px; }
-  .error-shake { animation:shake 0.4s ease; border-color:rgba(255,215,0,0.8) !important; box-shadow:0 0 0 4px rgba(255,215,0,0.12) !important; }
-  @keyframes shake { 0%,100%{transform:translateX(0);} 25%{transform:translateX(-6px);} 75%{transform:translateX(6px);} }
+  .error-input { border-color:rgba(255,215,0,0.8) !important; box-shadow:0 0 0 4px rgba(255,215,0,0.12) !important; }
   .success-msg { display:flex; flex-direction:column; align-items:center; gap:12px; padding:1.5rem 0 0.5rem; animation:fadeUp 0.5s ease forwards; text-align:center; }
   .success-icon { font-size:52px; animation:popIn 0.6s cubic-bezier(0.34,1.56,0.64,1) forwards; }
   @keyframes popIn { 0%{transform:scale(0) rotate(-20deg);opacity:0;} 100%{transform:scale(1) rotate(0deg);opacity:1;} }
@@ -61,36 +62,28 @@ const Particles = () => {
   const colors = ["#a30042","#004fa8","#ffd700","#ffffff","#c8a0e0"];
   const confetti = Array.from({ length: 18 }, (_, i) => ({
     id: i,
-    left: `${Math.random() * 100}vw`,
-    width: `${6 + Math.random() * 8}px`,
-    height: `${6 + Math.random() * 8}px`,
-    background: colors[Math.floor(Math.random() * colors.length)],
-    duration: `${7 + Math.random() * 10}s`,
-    delay: `${Math.random() * 12}s`,
-    borderRadius: Math.random() > 0.5 ? "50%" : "2px",
+    left: `${(i * 5.8 + 3) % 100}vw`,
+    width: `${6 + (i % 5)}px`,
+    height: `${6 + (i % 4)}px`,
+    background: colors[i % colors.length],
+    duration: `${7 + (i % 6)}s`,
+    delay: `${(i * 0.8) % 12}s`,
+    borderRadius: i % 2 === 0 ? "50%" : "2px",
   }));
   const balls = Array.from({ length: 5 }, (_, i) => ({
     id: i,
-    left: `${10 + Math.random() * 80}vw`,
-    duration: `${12 + Math.random() * 10}s`,
-    delay: `${Math.random() * 15}s`,
-    fontSize: `${16 + Math.random() * 16}px`,
+    left: `${10 + i * 18}vw`,
+    duration: `${12 + i * 2}s`,
+    delay: `${i * 3}s`,
+    fontSize: `${16 + i * 4}px`,
   }));
   return (
     <>
       {confetti.map((c) => (
-        <div
-          key={c.id}
-          className="confetti-piece"
-          style={{ left: c.left, width: c.width, height: c.height, background: c.background, animationDuration: c.duration, animationDelay: c.delay, borderRadius: c.borderRadius }}
-        />
+        <div key={c.id} className="confetti-piece" style={{ left: c.left, width: c.width, height: c.height, background: c.background, animationDuration: c.duration, animationDelay: c.delay, borderRadius: c.borderRadius }} />
       ))}
       {balls.map((b) => (
-        <div
-          key={b.id}
-          className="ball-float"
-          style={{ left: b.left, animationDuration: b.duration, animationDelay: b.delay, fontSize: b.fontSize }}
-        >
+        <div key={b.id} className="ball-float" style={{ left: b.left, animationDuration: b.duration, animationDelay: b.delay, fontSize: b.fontSize }}>
           ⚽
         </div>
       ))}
@@ -108,7 +101,7 @@ const Welcome = () => {
 
   useEffect(() => {
     if (success) {
-      const timer = setTimeout(() => navigate("/invite"), 1800);
+      const timer = setTimeout(() => navigate("/invite"), 2000);
       return () => clearTimeout(timer);
     }
   }, [success, navigate]);
@@ -123,14 +116,14 @@ const Welcome = () => {
     }
     setLoading(true);
     try {
-      const fullName = `${firstName.trim()} ${lastName.trim()}`;
+      const fullName = firstName.trim() + " " + lastName.trim();
       const device = navigator.userAgent.includes("Mobile") ? "Mobile" : "Desktop";
-      await fetch(`${SUPABASE_URL}/rest/v1/visitors`, {
+      await fetch(SUPABASE_URL + "/rest/v1/visitors", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "apikey": SUPABASE_KEY,
-          "Authorization": `Bearer ${SUPABASE_KEY}`,
+          "Authorization": "Bearer " + SUPABASE_KEY,
         },
         body: JSON.stringify({ name: fullName, device }),
       });
@@ -144,6 +137,9 @@ const Welcome = () => {
   return (
     <div className="welcome-root">
       <style>{styles}</style>
+      <video className="video-bg" src="/hero.mp4" autoPlay muted loop playsInline />
+      <div className="video-overlay" />
+      <div className="video-vignette" />
       <div className="orb orb1" />
       <div className="orb orb2" />
       <div className="orb orb3" />
@@ -157,17 +153,15 @@ const Welcome = () => {
           <div className="score-mid">
             <span className="score-status">Final</span>
             <span className="score-vs">vs</span>
-            <span className="score-date">11 Abr</span>
+            <span className="score-date">11 Abr · La Liga</span>
           </div>
           <div className="score-team opp">
             <span className="team-name">Espanyol</span>
             <span className="team-score">1</span>
           </div>
         </div>
-
         <h1 className="w-h1">UNETE AL<br /><span>EQUIPO</span></h1>
-        <p className="w-sub">Dinos quien eres</p>
-
+        <p className="w-sub">Dinos quien eres, culer</p>
         <div className="w-card">
           <div className="jersey-deco">10</div>
           {!success ? (
@@ -180,7 +174,7 @@ const Welcome = () => {
                     placeholder="Lionel"
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
-                    className={errors.first ? "error-shake" : ""}
+                    className={errors.first ? "error-input" : ""}
                     onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
                   />
                 </div>
@@ -191,7 +185,7 @@ const Welcome = () => {
                     placeholder="Messi"
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
-                    className={errors.last ? "error-shake" : ""}
+                    className={errors.last ? "error-input" : ""}
                     onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
                   />
                 </div>
