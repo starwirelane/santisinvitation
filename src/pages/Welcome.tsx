@@ -259,9 +259,8 @@ const Welcome = () => {
       <div className="orb orb3" />
       <FloatingBalls />
       <div className="w-container">
-        <ScoreBar />
-        <h1 className="w-h1">UNETE AL<br /><span>EQUIPO</span></h1>
-        <p className="w-sub">Dinos quien eres, culer</p>
+    <h1 className="w-h1" style={{ fontSize: "clamp(4rem,16vw,7rem)" }}>UNETE AL<br /><span>EQUIPO</span></h1>
+        <p className="w-sub">Dinos quien eres, campeon ⚽</p>
         <div className="w-card">
           {!success ? (
             <>
