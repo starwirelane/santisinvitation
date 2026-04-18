@@ -400,13 +400,19 @@ const Index = () => {
                 <p className="text-white/80 text-sm font-semibold font-heading">Confirma por mensaje de texto:</p>
                 <button
                   onClick={() => {
-                    const guestText = guestCount ? " Venimos " + guestCount + "." : "";
+                    if (!guestCount) return;
+                    const guestText = " Venimos " + guestCount + ".";
                     window.location.href = "sms:209-663-3948" + (navigator.userAgent.includes("Android") ? "?body=" : "&body=") + encodeURIComponent("Hola! Soy " + visitorName + ", confirmo mi asistencia a la graduacion de Santiago el 13 de Junio!" + guestText);
                   }}
-                  className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 rounded-full font-heading font-bold text-sm text-white"
-                  style={{ background: "linear-gradient(135deg, #22c55e, #16a34a)", boxShadow: "0 0 20px rgba(34,197,94,0.4)" }}
+                  className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 rounded-full font-heading font-bold text-sm text-white transition-all duration-300"
+                  style={{
+                    background: guestCount ? "linear-gradient(135deg, #22c55e, #16a34a)" : "rgba(255,255,255,0.1)",
+                    boxShadow: guestCount ? "0 0 20px rgba(34,197,94,0.4)" : "none",
+                    cursor: guestCount ? "pointer" : "not-allowed",
+                    opacity: guestCount ? 1 : 0.5,
+                  }}
                 >
-                  Enviar texto al 209-663-3948
+                  {guestCount ? "Enviar texto al 209-663-3948" : "Selecciona cuantos vienen primero"}
                 </button>
                 <p className="text-white/40 text-xs text-center">Confirma con Esmeralda Luvianos antes del 7 de junio</p>
               </div>
