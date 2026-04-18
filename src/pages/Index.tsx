@@ -291,7 +291,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <AnimatePresence mode="wait">
+      <button         onClick={() => { localStorage.removeItem("visitorName"); window.location.href = "/"; }}         style={{           position: "fixed",           top: "1rem",           left: "1rem",           zIndex: 50,           background: "rgba(255,255,255,0.08)",           border: "1px solid rgba(255,255,255,0.15)",           borderRadius: "999px",           padding: "6px 14px",           color: "rgba(255,255,255,0.5)",           fontSize: "11px",           cursor: "pointer",           backdropFilter: "blur(10px)",         }}       >         Cerrar sesion       </button>       <AnimatePresence mode="wait">
 
         {step === 0 && (
           <motion.section key="hero" {...fade} className="min-h-screen relative flex flex-col items-center justify-center px-6 text-center overflow-hidden">
