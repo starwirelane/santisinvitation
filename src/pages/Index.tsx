@@ -401,7 +401,7 @@ const Index = () => {
                 <button
                   onClick={() => {
                     if (!guestCount) return;
-                    const guestText = " Venimos " + guestCount + ".";
+                    const guestText = guestCount === "Solo yo" ? " Sere solo yo." : " Venimos " + guestCount + ".";
                     window.location.href = "sms:209-663-3948" + (navigator.userAgent.includes("Android") ? "?body=" : "&body=") + encodeURIComponent("Hola! Soy " + visitorName + ", confirmo mi asistencia a la graduacion de Santiago el 13 de Junio!" + guestText);
                   }}
                   className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 rounded-full font-heading font-bold text-sm text-white transition-all duration-300"
