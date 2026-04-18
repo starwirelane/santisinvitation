@@ -214,6 +214,13 @@ const Welcome = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const savedName = localStorage.getItem("visitorName");
+    if (savedName) {
+      navigate("/invite");
+    }
+  }, []);
+
+  useEffect(() => {
     if (success) {
       const timer = setTimeout(() => navigate("/invite"), 2000);
       return () => clearTimeout(timer);
