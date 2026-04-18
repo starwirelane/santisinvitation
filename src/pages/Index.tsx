@@ -398,7 +398,7 @@ const Index = () => {
                   {["Solo yo", "2 personas", "3 personas", "4+ personas"].map((option) => (
                     <button
                       key={option}
-                      onClick={() => setGuestCount(option)}
+                      onClick={() => { setGuestCount(option); saveGuestCount(option); }}
                       className="px-4 py-3 rounded-xl font-heading font-bold text-sm transition-all duration-200"
                       style={{
                         background: guestCount === option ? "rgba(34,197,94,0.3)" : "rgba(255,255,255,0.05)",
