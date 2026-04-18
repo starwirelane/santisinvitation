@@ -126,7 +126,7 @@ const Card = ({
             className="card__button"
             onClick={(e) => e.stopPropagation()}
           >
-            Ver en tienda →
+            Ver en tienda &rarr;
           </a>
           <button
             className={"card__select-btn" + (selected ? " selected" : "")}
