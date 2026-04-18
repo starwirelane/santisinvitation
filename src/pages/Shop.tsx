@@ -113,7 +113,7 @@ const Card = ({ img, title, desc, badge, link, selected, onSelect }: CardProps) 
             <p className="card__description">{desc}</p>
           </div>
           <div className="card__footer">
-            
+            <a
               href={link}
               target="_blank"
               rel="noopener noreferrer"
