@@ -283,6 +283,7 @@ const RsvpChoice = ({ onAccept, onDecline }: { onAccept: () => void; onDecline: 
 const Index = () => {
   const [step, setStep] = useState(0);
   const [declined, setDeclined] = useState(false);
+  const [guestCount, setGuestCount] = useState("");
   const visitorName = localStorage.getItem("visitorName") || "";
   const firstName = visitorName.split(" ")[0];
 
