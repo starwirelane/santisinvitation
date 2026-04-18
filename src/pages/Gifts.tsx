@@ -108,6 +108,21 @@ const sections = [
     title: "Jerseys de futbol",
     desc: "Le encantan estos equipos:",
     tags: ["Barcelona", "Pumas", "Argentina", "Espana", "Mexico", "Brasil", "Francia"],
+    link: "/shop",
+  },
+  {
+    emoji: "🎣",
+    title: "Equipo de pesca",
+    desc: "Le encanta la pesca, cualquier cosa relacionada es bienvenida:",
+    tags: ["Anzuelos", "Canas de pescar", "Caja de pesca", "Carnadas", "Chaleco de pesca"],
+    link: "/shop",
+  },
+  {
+    emoji: "💵",
+    title: "Dinero",
+    desc: "Siempre es bienvenido para lo que Santiago necesite.",
+    tags: [],
+    link: "",
   },
   {
     emoji: "🎣",
@@ -262,7 +277,7 @@ const Gifts = () => {
             style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", backdropFilter: "blur(12px)" }}
             variants={fadeUp}
             custom={i + 2}
-            whileHover={{ scale: 1.01, background: "rgba(255,255,255,0.07)" } as any}
+            whileHover={{ scale: 1.01, background: "rgba(255,255,255,0.07)" } as any}             onClick={() => section.link && window.open(section.link, "_self")}             style={{ cursor: section.link ? "pointer" : "default" }}             onClick={() => section.link && window.open(section.link, "_self")}             style={{ cursor: section.link ? "pointer" : "default" }}             onClick={() => section.link && window.open(section.link, "_self")}             style={{ cursor: section.link ? "pointer" : "default" }}
           >
             <div className="flex items-center gap-4">
               <span
