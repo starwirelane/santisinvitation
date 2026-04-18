@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import barcelonaImg from "@/assets/barcelona.webp";
 import pumasImg from "@/assets/pumas.webp";
 import argentinaImg from "@/assets/argentina.webp";
@@ -24,20 +24,7 @@ const styles = `
   .shop-section { max-width:1200px; margin:0 auto 4rem; }
   .shop-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:1.5rem; }
   .card-effect { perspective:1000px; }
-  .card-inner {
-    width:100%;
-    height:300px;
-    background:#111827;
-    border-radius:20px;
-    position:relative;
-    overflow:hidden;
-    transition:transform 0.6s cubic-bezier(0.23,1,0.32,1), box-shadow 0.6s cubic-bezier(0.23,1,0.32,1), border 0.3s;
-    box-shadow:0 12px 24px rgba(0,0,0,0.3);
-    border:2px solid rgba(255,255,255,0.08);
-    font-family:'DM Sans',sans-serif;
-    transform-style:preserve-3d;
-    cursor:pointer;
-  }
+  .card-inner { width:100%; height:300px; background:#111827; border-radius:20px; position:relative; overflow:hidden; transition:transform 0.6s cubic-bezier(0.23,1,0.32,1), box-shadow 0.6s cubic-bezier(0.23,1,0.32,1); box-shadow:0 12px 24px rgba(0,0,0,0.3); border:2px solid rgba(255,255,255,0.08); font-family:'DM Sans',sans-serif; transform-style:preserve-3d; cursor:pointer; }
   .card-inner:hover { transform:rotateY(8deg) rotateX(8deg) translateZ(10px); box-shadow:0 30px 60px rgba(0,0,0,0.5); }
   .card-inner.selected { border:2px solid #ffed02; box-shadow:0 0 25px rgba(255,237,2,0.3); }
   .card__liquid { position:absolute; top:-80px; left:0; width:300px; height:200px; background:#ffed02; border-radius:50%; transform:translateZ(-80px); filter:blur(80px); transition:transform 0.7s cubic-bezier(0.36,0,0.66,-0.56), opacity 0.3s ease-in-out; opacity:0; }
@@ -66,9 +53,9 @@ const styles = `
   .card__select-btn:hover { background:rgba(255,237,2,0.2); }
   .card__select-btn.selected { background:rgba(255,237,2,0.3); border-color:#ffed02; }
   .selected-bar { position:fixed; bottom:0; left:0; right:0; z-index:100; padding:1rem 1.5rem; background:rgba(10,10,26,0.95); backdrop-filter:blur(20px); border-top:1px solid rgba(255,237,2,0.3); display:flex; align-items:center; justify-content:space-between; gap:1rem; }
-  .selected-bar-text { color:rgba(255,255,255,0.7); font-size:13px; }
+  .selected-bar-text { color:rgba(255,255,255,0.7); font-size:13px; flex:1; }
   .selected-bar-text span { color:#ffed02; font-weight:700; }
-  .selected-bar-btn { padding:10px 24px; border-radius:999px; background:linear-gradient(135deg,#ffed02,#f5c518); color:#0a0a1a; font-weight:700; font-size:13px; border:none; cursor:pointer; transition:transform 0.2s; }
+  .selected-bar-btn { padding:10px 24px; border-radius:999px; background:linear-gradient(135deg,#ffed02,#f5c518); color:#0a0a1a; font-weight:700; font-size:13px; border:none; cursor:pointer; transition:transform 0.2s; white-space:nowrap; }
   .selected-bar-btn:hover { transform:scale(1.05); }
   .back-btn { display:block; text-align:center; margin:2rem auto; padding:12px 32px; border-radius:999px; border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.6); font-family:'DM Sans',sans-serif; font-size:14px; text-decoration:none; transition:all 0.3s; max-width:200px; }
   .back-btn:hover { background:rgba(255,255,255,0.1); }
@@ -97,50 +84,60 @@ const fishing = [
   { img: fishingBaitImg, title: "Carnadas", desc: "Carnadas y sensuelos", badge: "EFECTIVO", link: "https://www.basspro.com/shop/en/live-bait" },
 ];
 
-const Card = ({
-  img, title, desc, badge, link, selected, onSelect,
-}: {
-  img: string; title: string; desc: string; badge: string; link: string; selected: boolean; onSelect: () => void;
-}) => (
-  <div className="card-effect">
-    <div className={"card-inner" + (selected ? " selected" : "")}>
-      {selected && <div className="card__selected-overlay" />}
-      {selected && <div className="card__check">✓</div>}
-      <div className="card__liquid" />
-      <div className="card__shine" />
-      <div className="card__glow" />
-      <div className="card__content">
-        <div className="card__badge">{badge}</div>
-        <div className="card__image">
-          <img src={img} alt={title} />
-        </div>
-        <div className="card__text">
-          <p className="card__title">{title}</p>
-          <p className="card__description">{desc}</p>
-        </div>
-        <div className="card__footer">
-          
-            href={link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="card__button"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {"Ver en tienda >"}
-          </a>
-            className={"card__select-btn" + (selected ? " selected" : "")}
-            onClick={(e) => { e.stopPropagation(); onSelect(); }}
-          >
-            {selected ? "✓" : "+"}
-          </button>
+type CardProps = {
+  img: string;
+  title: string;
+  desc: string;
+  badge: string;
+  link: string;
+  selected: boolean;
+  onSelect: () => void;
+};
+
+const Card = ({ img, title, desc, badge, link, selected, onSelect }: CardProps) => {
+  return (
+    <div className="card-effect">
+      <div className={"card-inner" + (selected ? " selected" : "")}>
+        {selected && <div className="card__selected-overlay" />}
+        {selected && <div className="card__check">✓</div>}
+        <div className="card__liquid" />
+        <div className="card__shine" />
+        <div className="card__glow" />
+        <div className="card__content">
+          <div className="card__badge">{badge}</div>
+          <div className="card__image">
+            <img src={img} alt={title} />
+          </div>
+          <div className="card__text">
+            <p className="card__title">{title}</p>
+            <p className="card__description">{desc}</p>
+          </div>
+          <div className="card__footer">
+            
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card__button"
+              onClick={(e) => e.stopPropagation()}
+            >
+              Ver en tienda
+            </a>
+            <button
+              className={"card__select-btn" + (selected ? " selected" : "")}
+              onClick={(e) => { e.stopPropagation(); onSelect(); }}
+            >
+              {selected ? "✓" : "+"}
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 const Shop = ({ section }: { section: "jerseys" | "fishing" }) => {
   const [selected, setSelected] = useState<string[]>([]);
+  const navigate = useNavigate();
   const items = section === "jerseys" ? jerseys : fishing;
 
   const toggleSelect = (title: string) => {
@@ -158,9 +155,13 @@ const Shop = ({ section }: { section: "jerseys" | "fishing" }) => {
       <div style={{ position: "relative", zIndex: 1, paddingBottom: selected.length > 0 ? "5rem" : "0" }}>
         <div className="shop-header">
           <h1 className="shop-title">
-            {section === "jerseys" ? <><span>Camisetas</span> de Futbol</> : <>Equipo de <span>Pesca</span></>}
+            {section === "jerseys" ? (
+              <><span>Camisetas</span> de Futbol</>
+            ) : (
+              <>Equipo de <span>Pesca</span></>
+            )}
           </h1>
-          <p className="shop-subtitle">Haz clic en "Ver en tienda" para comprar o usa "+" para seleccionar</p>
+          <p className="shop-subtitle">Toca "Ver en tienda" para comprar o "+" para seleccionar</p>
           <p className="shop-select-hint">Selecciona tus favoritos ⚽</p>
         </div>
         <div className="shop-section">
@@ -185,8 +186,11 @@ const Shop = ({ section }: { section: "jerseys" | "fishing" }) => {
           <p className="selected-bar-text">
             <span>{selected.length}</span> seleccionado{selected.length > 1 ? "s" : ""}: {selected.join(", ")}
           </p>
-          <button className="selected-bar-btn" onClick={() => alert("Seleccion guardada!")}>
-            Confirmar ✓
+          <button
+            className="selected-bar-btn"
+            onClick={() => navigate("/pass")}
+          >
+            Continuar
           </button>
         </div>
       )}
