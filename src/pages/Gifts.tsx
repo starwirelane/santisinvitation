@@ -16,14 +16,14 @@ const sections = [
     title: "Jerseys de futbol",
     desc: "Le encantan estos equipos — haz clic para ver opciones:",
     tags: ["Barcelona", "Pumas", "Argentina", "Espana", "Mexico", "Brasil", "Francia"],
-    link: "/shop",
+    link: "/shop/jerseys",
   },
   {
     emoji: "🎣",
     title: "Equipo de pesca",
     desc: "Le encanta la pesca — haz clic para ver opciones:",
     tags: ["Anzuelos", "Canas de pescar", "Caja de pesca", "Carnadas", "Chaleco de pesca"],
-    link: "/shop",
+    link: "/shop/fishing",
   },
   {
     emoji: "💵",
