@@ -183,7 +183,7 @@ const Card = ({ img, title, desc, badge, link }: { img: string; title: string; d
   </div>
 );
 
-const Shop = () => {
+const Shop = ({ section }: { section: "jerseys" | "fishing" }) => {
   return (
     <div className="shop-root">
       <style>{styles}</style>
@@ -192,21 +192,14 @@ const Shop = () => {
       <div className="orb orb3" />
       <div style={{ position: "relative", zIndex: 1 }}>
         <div className="shop-header">
-          <h1 className="shop-title">IDEAS DE <span>REGALO</span></h1>
+          <h1 className="shop-title">
+            {section === "jerseys" ? <><span>Camisetas</span> de Futbol</> : <>Equipo de <span>Pesca</span></>}
+          </h1>
           <p className="shop-subtitle">Haz clic en cualquier tarjeta para ver opciones en la tienda oficial</p>
         </div>
         <div className="shop-section">
-          <h2 className="shop-section-title">Camisetas de Futbol</h2>
           <div className="shop-grid">
-            {jerseys.map((item) => (
-              <Card key={item.title} {...item} />
-            ))}
-          </div>
-        </div>
-        <div className="shop-section">
-          <h2 className="shop-section-title">Equipo de Pesca</h2>
-          <div className="shop-grid">
-            {fishing.map((item) => (
+            {(section === "jerseys" ? jerseys : fishing).map((item) => (
               <Card key={item.title} {...item} />
             ))}
           </div>
