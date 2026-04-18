@@ -5,7 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Analytics } from "@vercel/analytics/react";
 import Index from "./pages/Index.tsx";
-import Gifts from "./pages/Gifts.tsx";
+import Gifts from "./pages/Gifts.tsx"; import Shop from "./pages/Shop.tsx";
 import Welcome from "./pages/Welcome.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
@@ -20,7 +20,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/invite" element={<Index />} />
-          <Route path="/gifts" element={<Gifts />} />
+          <Route path="/gifts" element={<Gifts />} /> <Route path="/shop" element={<Shop />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
