@@ -68,12 +68,12 @@ const styles = `
 
 const jerseys = [
   { img: barcelonaImg, title: "FC Barcelona", desc: "Todas las camisetas del Barca", badge: "POPULAR", link: "https://store.fcbarcelona.com/en/football/shirts" },
-  { img: pumasImg, title: "Pumas UNAM", desc: "Cualquier kit y jugador", badge: "CLASICO", link: "https://www.pumasfutbol.com.mx/collections/jerseys" },
+  { img: pumasImg, title: "Pumas UNAM", desc: "Cualquier kit y jugador", badge: "CLASICO", link: "https://www.nike.com/w/pumas-jerseys-1gdj0z5l6kaz7nem3z8mtvt" },
   { img: argentinaImg, title: "Argentina", desc: "Kit con Messi en la espalda", badge: "MESSI", link: "https://www.adidas.com/us/search?q=argentina+messi+jersey" },
   { img: espanaImg, title: "Espana", desc: "Away 2026 blanca — Yamal, Pedri, Dani Olmo", badge: "2026", link: "https://www.adidas.com/us/search?q=spain+away+jersey+2026" },
   { img: mexicoImg, title: "Mexico", desc: "Cualquier kit y jugador", badge: "EL TRI", link: "https://www.adidas.com/us/search?q=mexico+jersey" },
-  { img: brasilImg, title: "Brasil", desc: "Todas las camisetas de Brasil", badge: "SAMBA", link: "https://www.nike.com/w/brazil-national-team-jerseys" },
-  { img: franciaImg, title: "Francia", desc: "Todas las camisetas de Francia", badge: "LES BLEUS", link: "https://www.nike.com/w/france-national-team-jerseys" },
+  { img: brasilImg, title: "Brasil", desc: "Todas las camisetas de Brasil", badge: "SAMBA", link: "https://www.nike.com/w/soccer-brazil-jerseys-1gdj0z3a41ez3alw0" },
+  { img: franciaImg, title: "Francia", desc: "Todas las camisetas de Francia", badge: "LES BLEUS", link: "https://boutique.fff.fr/en/" },
 ];
 
 const fishing = [
