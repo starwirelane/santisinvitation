@@ -21,6 +21,20 @@ const saveRsvp = async (attending: boolean) => {
   });
 };
 
+const saveGuestCount = async (count: string) => {
+  const name = localStorage.getItem("visitorName") || "Unknown";
+  await fetch(SUPABASE_URL + "/rest/v1/visitors?name=eq." + encodeURIComponent(name), {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      "apikey": SUPABASE_KEY,
+      "Authorization": "Bearer " + SUPABASE_KEY,
+      "Prefer": "return=minimal",
+    },
+    body: JSON.stringify({ guest_count: count }),
+  });
+};
+
 const fade = {
   initial: { opacity: 0 },
   animate: { opacity: 1, transition: { duration: 0.7 } },
