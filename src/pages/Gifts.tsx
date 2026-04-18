@@ -2,6 +2,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
+const SUPABASE_URL = "https://yhvxzbrmzjervjhokcao.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlodnh6YnJtemplcnZqaG9rY2FvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwMTY0NDcsImV4cCI6MjA5MTU5MjQ0N30.wSbgfeDgexQEiSVZE2Xc2iQfvxf3emEY37VzQYzO3-o";
+
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
   visible: (i: number) => ({
@@ -12,6 +15,20 @@ const fadeUp = {
 };
 
 const giftCards = ["🎮 Roblox", "🔍 Google", "🍔 In-N-Out", "🎯 Target", "💳 Visa"];
+
+const saveGifts = async (gifts: string) => {
+  const name = localStorage.getItem("visitorName") || "Unknown";
+  await fetch(`${SUPABASE_URL}/rest/v1/visitors?name=eq.${encodeURIComponent(name)}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      "apikey": SUPABASE_KEY,
+      "Authorization": `Bearer ${SUPABASE_KEY}`,
+      "Prefer": "return=minimal",
+    },
+    body: JSON.stringify({ gifts }),
+  });
+};
 
 const GlowOrbs = () => (
   <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -57,16 +74,32 @@ const Gifts = () => {
 
   const hasSelection = selectedCards.length > 0 || selectedSections.length > 0;
 
+  const buildGiftsString = (sections: string[], cards: string[]) => {
+    const parts: string[] = [];
+    if (sections.includes("jerseys")) parts.push("Jerseys de futbol");
+    if (sections.includes("fishing")) parts.push("Equipo de pesca");
+    if (sections.includes("efectivo")) parts.push("Efectivo");
+    if (sections.includes("giftcards") && cards.length > 0) parts.push("Tarjetas: " + cards.join(", "));
+    else if (sections.includes("giftcards")) parts.push("Tarjetas de regalo");
+    return parts.join(" | ");
+  };
+
   const toggleCard = (card: string) => {
-    setSelectedCards(prev =>
-      prev.includes(card) ? prev.filter(c => c !== card) : [...prev, card]
-    );
+    const newCards = selectedCards.includes(card)
+      ? selectedCards.filter(c => c !== card)
+      : [...selectedCards, card];
+    setSelectedCards(newCards);
+    const giftsStr = buildGiftsString(selectedSections, newCards);
+    if (giftsStr) saveGifts(giftsStr);
   };
 
   const toggleSection = (title: string) => {
-    setSelectedSections(prev =>
-      prev.includes(title) ? prev.filter(s => s !== title) : [...prev, title]
-    );
+    const newSections = selectedSections.includes(title)
+      ? selectedSections.filter(s => s !== title)
+      : [...selectedSections, title];
+    setSelectedSections(newSections);
+    const giftsStr = buildGiftsString(newSections, selectedCards);
+    if (giftsStr) saveGifts(giftsStr);
   };
 
   return (
@@ -159,12 +192,7 @@ const Gifts = () => {
                 </span>
               ))}
             </div>
-            <Link
-              to="/shop/jerseys"
-              onClick={(e) => e.stopPropagation()}
-              className="inline-block text-xs font-semibold"
-              style={{ color: "rgba(99,102,241,0.8)", textDecoration: "underline" }}
-            >
+            <Link to="/shop/jerseys" onClick={(e) => e.stopPropagation()} className="inline-block text-xs font-semibold" style={{ color: "rgba(99,102,241,0.8)", textDecoration: "underline" }}>
               Ver opciones de jerseys
             </Link>
           </div>
@@ -200,12 +228,7 @@ const Gifts = () => {
                 </span>
               ))}
             </div>
-            <Link
-              to="/shop/fishing"
-              onClick={(e) => e.stopPropagation()}
-              className="inline-block text-xs font-semibold"
-              style={{ color: "rgba(99,102,241,0.8)", textDecoration: "underline" }}
-            >
+            <Link to="/shop/fishing" onClick={(e) => e.stopPropagation()} className="inline-block text-xs font-semibold" style={{ color: "rgba(99,102,241,0.8)", textDecoration: "underline" }}>
               Ver opciones de pesca
             </Link>
           </div>
