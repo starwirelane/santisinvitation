@@ -2,8 +2,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-const PASS2U_LINK = "https://www.pass2u.net/p/FPkLMTlCfhc2?openExternalBrowser=1";
-
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
   visible: (i: number) => ({
@@ -167,7 +165,7 @@ const Gifts = () => {
               className="inline-block text-xs font-semibold"
               style={{ color: "rgba(99,102,241,0.8)", textDecoration: "underline" }}
             >
-              Ver opciones de jerseys →
+              Ver opciones de jerseys
             </Link>
           </div>
         </motion.div>
@@ -208,24 +206,24 @@ const Gifts = () => {
               className="inline-block text-xs font-semibold"
               style={{ color: "rgba(99,102,241,0.8)", textDecoration: "underline" }}
             >
-              Ver opciones de pesca →
+              Ver opciones de pesca
             </Link>
           </div>
         </motion.div>
 
-        {/* Dinero */}
+        {/* Efectivo */}
         <motion.div
           className="rounded-2xl p-6"
           style={{
-            background: selectedSections.includes("dinero") ? "rgba(245,197,24,0.12)" : "rgba(255,255,255,0.04)",
-            border: selectedSections.includes("dinero") ? "2px solid rgba(245,197,24,0.6)" : "1px solid rgba(255,255,255,0.1)",
+            background: selectedSections.includes("efectivo") ? "rgba(245,197,24,0.12)" : "rgba(255,255,255,0.04)",
+            border: selectedSections.includes("efectivo") ? "2px solid rgba(245,197,24,0.6)" : "1px solid rgba(255,255,255,0.1)",
             backdropFilter: "blur(12px)",
             cursor: "pointer",
             transition: "all 0.3s",
           }}
           variants={fadeUp}
           custom={4}
-          onClick={() => toggleSection("dinero")}
+          onClick={() => toggleSection("efectivo")}
           whileHover={{ scale: 1.01 } as any}
         >
           <div className="flex items-center gap-4">
@@ -233,10 +231,10 @@ const Gifts = () => {
               💵
             </span>
             <div className="flex-1">
-              <h3 className="font-heading font-bold text-lg text-white">Dinero</h3>
+              <h3 className="font-heading font-bold text-lg text-white">Efectivo</h3>
               <p className="text-sm text-white/50">Siempre es bienvenido para lo que Santiago necesite.</p>
             </div>
-            {selectedSections.includes("dinero") && <span className="text-2xl">✅</span>}
+            {selectedSections.includes("efectivo") && <span className="text-2xl">✅</span>}
           </div>
         </motion.div>
 
@@ -258,7 +256,7 @@ const Gifts = () => {
                   boxShadow: "0 0 30px rgba(255,237,2,0.4)",
                 }}
               >
-                Continuar →
+                Continuar
               </button>
             </motion.div>
           )}
